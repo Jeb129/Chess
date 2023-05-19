@@ -262,9 +262,7 @@ namespace Chess
                 r = Kpos[0];
                 c = Kpos[1];
                 if (CheckChecker(Deck, select.Team, r, c))
-                {
                     moves.RemoveAt(i);
-                }
             }
             return moves;
         }
