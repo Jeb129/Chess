@@ -19,7 +19,7 @@ namespace Chess
         public Game()
         {
             InitializeComponent();
-            ButtonDeck = new Button[,]
+            ButtonDeck = new Button[,] 
             {
             { a1, b1, c1, d1, e1, f1, g1, h1 },
             { a2, b2, c2, d2, e2, f2, g2, h2 },
@@ -33,16 +33,16 @@ namespace Chess
             //HistoryBox.DataSource = History;
             //HistoryBox.DisplayMember = "Num";
             //HistoryBox.ValueMember = "Team";
-            StartDeck();
+            //StartDeck();
             //Рокировка
-            //PutChess(GameDeck, Types.King, Teams.Black, 7, 4);
-            //PutChess(GameDeck, Types.King, Teams.White, 0, 4);
-            //PutChess(GameDeck, Types.Queen, Teams.Black, 7, 3);
-            //PutChess(GameDeck, Types.Queen, Teams.White, 0, 3);
-            //PutChess(GameDeck, Types.Rook, Teams.Black, 7, 0);
-            //PutChess(GameDeck, Types.Rook, Teams.White, 0, 0);
-            //PutChess(GameDeck, Types.Rook, Teams.Black, 7, 7);
-            //PutChess(GameDeck, Types.Rook, Teams.White, 0, 7);
+            PutChess(GameDeck, Types.King, Teams.Black, 7, 4);
+            PutChess(GameDeck, Types.King, Teams.White, 0, 4);
+            PutChess(GameDeck, Types.Queen, Teams.Black, 7, 3);
+            PutChess(GameDeck, Types.Queen, Teams.White, 0, 3);
+            PutChess(GameDeck, Types.Rook, Teams.Black, 7, 0);
+            PutChess(GameDeck, Types.Rook, Teams.White, 0, 0);
+            PutChess(GameDeck, Types.Rook, Teams.Black, 7, 7);
+            PutChess(GameDeck, Types.Rook, Teams.White, 0, 7);
             //Превращение
             //PutChess(GameDeck,Types.Pawn, Teams.White, 6, 5);
             //PutChess(GameDeck, Types.Pawn, Teams.Black, 1, 5);
@@ -50,13 +50,13 @@ namespace Chess
         }
 
         Button[,] ButtonDeck = new Button[8, 8]; //Визуальная доска из кнопок
-        Figura[,] GameDeck = new Figura[8, 8];//Логическая доска из фигур
+        Figura[,] GameDeck = new Figura[8,8];//Логическая доска из фигур
         public static List<MoveHistory> History = new List<MoveHistory>(); //История ходов. Отдельный класс для реализации некоторых возможностей
         bool White2move = true; //Проверка хода белых
         bool Check = false; //Шах на доске
         uint MoveCount = 0; //Счётчик ходов
         //Информация о выбранной фигуре
-        Figura SelectF;
+        Figura SelectF; 
         List<int[]> Smoves;
         int Srow;
         int Scol;
@@ -68,24 +68,24 @@ namespace Chess
             //Ставим пешки
             for (int i = 0; i < 8; i++)
             {
-                PutChess(GameDeck, Types.Pawn, Teams.White, 1, i);
-                PutChess(GameDeck, Types.Pawn, Teams.Black, 6, i);
+                PutChess(GameDeck,Types.Pawn, Teams.White,1, i);
+                PutChess(GameDeck, Types.Pawn, Teams.Black,6, i);
             }
             //Ставим фигуры слева от короля и короля
             for (int i = 0; i < 5; i++)
             {
-                PutChess(GameDeck, (Types)i, Teams.White, 0, i);
-                PutChess(GameDeck, (Types)i, Teams.Black, 7, i);
+                PutChess(GameDeck, (Types)i, Teams.White,0, i);
+                PutChess(GameDeck, (Types)i, Teams.Black,7, i);
             }
             //Фигуры справа
             for (int i = 0; i < 4; i++)
             {
-                PutChess(GameDeck, (Types)(3 - i), Teams.White, 0, i + 4);
-                PutChess(GameDeck, (Types)(3 - i), Teams.Black, 7, i + 4);
+                PutChess(GameDeck, (Types)(3-i), Teams.White,0, i + 4);
+                PutChess(GameDeck, (Types)(3-i), Teams.Black,7, i + 4);
             }
         }
         //Расстановка и отображение фигур
-        void PutChess(Figura[,] Deck, Types type, Teams team, int row, int col, bool Draw = true)
+        void PutChess(Figura[,] Deck, Types type, Teams team, int row, int col,bool Draw = true)
         {
             Figura chess = new Figura(type, team, row, col);
             if (Deck[row, col] != null && team == Deck[row, col].Team)
@@ -94,7 +94,7 @@ namespace Chess
             if (Draw)
                 DrawChess(row, col);
         }
-        void DelChess(Figura[,] Deck, int row, int col, bool Draw = true)
+        void DelChess(Figura[,]Deck,int row, int col,bool Draw = true)
         {
             Deck[row, col] = null;
             if (Draw)
@@ -158,13 +158,13 @@ namespace Chess
             ButtonDeck[row, col].Refresh();
         }
         //
-        void Moving(Figura[,] Deck, Figura select, int r, int c, bool Draw = true)
+        void Moving(Figura[,] Deck,Figura select, int r, int c, bool Draw = true)
         {
             //Взятие на проходе
-            if (select.Type == Types.Pawn && select.Col != c && Deck[r, c] == null)
+            if (select.Type == Types.Pawn && select.Col != c && Deck[r,c]==null)
                 DelChess(Deck, select.Row, c, Draw);
             //Превращение
-            if (Draw && select.Type == Types.Pawn && (r == 0 || r == 7))
+            if (Draw&&select.Type == Types.Pawn && (r == 0 || r == 7))
             {
                 ChessSetter chessSetter = new ChessSetter(select.Team);
                 chessSetter.ShowDialog();
@@ -175,7 +175,7 @@ namespace Chess
             {
                 if (c == 6)
                 {
-                    PutChess(Deck, Types.Rook, select.Team, r, 5);
+                    PutChess(Deck,Types.Rook, select.Team, r, 5);
                     DelChess(Deck, r, 7);
                 }
                 if (c == 2)
@@ -184,7 +184,7 @@ namespace Chess
                     DelChess(Deck, r, 0);
                 }
             }
-            PutChess(Deck, select.Type, select.Team, r, c, Draw);
+            PutChess(Deck,select.Type, select.Team, r, c,Draw);
             DelChess(Deck, select.Row, select.Col, Draw);
             if (Draw)
             {
@@ -192,7 +192,7 @@ namespace Chess
                 History.Add(move);
                 HistoryBox.Items.Add(move);
                 White2move = !White2move;
-                Deck[r, c].Fmove = false;
+                Deck[r,c].Fmove = false;
             }
         }
         /// <summary>
@@ -200,32 +200,32 @@ namespace Chess
         /// </summary>
         /// <param name="Ch"></param>
         /// <returns></returns>
-        bool CheckChecker(Figura[,] Deck, Teams team, int Krow, int Kcol)
+        bool CheckChecker(Figura[,] Deck,Teams team,int Krow,int Kcol)
         {
             foreach (Figura Ch in Deck)
                 if (Ch != null && Ch.Team != team)
                 {
-                    List<int[]> Premove = Ch.GetMoves(Deck, History);
+                    List<int[]> Premove = Ch.GetMoves(Deck,History);
                     foreach (int[] m2 in Premove)
                         if (Krow == m2[0] && Kcol == m2[1])
                             return true;
                 }
             return false;
-        }
-        void MateChecker(Figura[,] Deck, Teams team)
+        }   
+        void MateChecker(Teams team)
         {
-            int[] Kpos = KingFind(Deck, team);
+            int[] Kpos = KingFind(GameDeck, team);
             if (Kpos.Length == 0)
             {
                 MessageBox.Show("ЗА ИМПЕРАТОРА!!!!");
                 Application.Exit();
             }
-            Check = CheckChecker(Deck, team, Kpos[0], Kpos[1]);
+                Check = CheckChecker(GameDeck, team, Kpos[0], Kpos[1]);
             if (Check)
             {
                 ButtonDeck[Kpos[0], Kpos[1]].BackColor = Color.Red;
                 int count = 0;
-                foreach (Figura Ch in Deck)
+                foreach (Figura Ch in GameDeck)
                     if (Ch != null && Ch.Team == team)
                     {
                         List<int[]> moves = CheckRemove(Ch);
@@ -237,7 +237,7 @@ namespace Chess
         }
         private List<int[]> CheckRemove(Figura select)
         {
-            List<int[]> moves = select.GetMoves(GameDeck, History);
+            List<int[]> moves = select.GetMoves(GameDeck,History);
             int r = 0;
             int c = 0;
             for (int i = moves.Count - 1; i >= 0; i--)
@@ -250,9 +250,8 @@ namespace Chess
                     {
                         case 2: c = 3; goto case 0;
                         case 6: c = 5; goto case 0;
-                        case 0:
-                            r = select.Row;
-                            if (CheckChecker(Deck, select.Team, r, c))
+                        case 0: r = select.Row;
+                            if (Check || CheckChecker(Deck, select.Team, r, c))
                             {
                                 moves.RemoveAt(i);
                                 continue;
@@ -277,7 +276,7 @@ namespace Chess
             if (GameDeck[r, c] == null && SelectF == null)
                 return;
             HideMoves();
-            if (SelectF != null && (GameDeck[r, c] == null || GameDeck[r, c] != null && GameDeck[r, c].Team != SelectF.Team))
+            if (SelectF != null && (GameDeck[r, c] == null||GameDeck[r, c] != null && GameDeck[r, c].Team != SelectF.Team))
             {
                 //Проверяем, существует ли такой ход (Возможно стоит вынести)
                 bool Possible = false;
@@ -290,7 +289,7 @@ namespace Chess
             }
             else
                 ChessSelect(r, c);
-            MateChecker(GameDeck, (Teams)Int32.Parse(White2move ? "1" : "0"));
+            MateChecker((Teams)Int32.Parse(White2move ? "1" : "0"));
         }
         int[] KingFind(Figura[,] Deck, Teams team)
         {
@@ -309,7 +308,7 @@ namespace Chess
         {
             Figura[,] New = new Figura[8, 8];
             for (int i = 0; i < 8; i++)
-                for (int j = 0; j < 8; j++)
+                for(int j = 0; j < 8; j++)
                     New[i, j] = Old[i, j];
             return New;
         }
@@ -340,7 +339,7 @@ namespace Chess
         {
             for (int i = 0; i < 8; i++)
                 for (int j = 0; j < 8; j++)
-                    DelChess(GameDeck, i, j);
+                    DelChess(GameDeck,i, j);
             HideMoves();
         }
         private void RestartClick(object sender, EventArgs e)
@@ -360,7 +359,7 @@ namespace Chess
     }
     public class MoveHistory
     {
-        public MoveHistory(uint num, Teams team, Types type, int[] oldpos, int[] newpos)
+        public MoveHistory(uint num, Teams team, Types type, int[] oldpos, int[]newpos)
         {
             Num = num;
             Team = team;
@@ -377,7 +376,7 @@ namespace Chess
         {
             string Old = $"{(char)(OldPos[0] + 'a')}{OldPos[1]}";
             string New = $"{(char)(NewPos[0] + 'a')}{NewPos[1]}";
-            return $"{Num}. " + Old + " - " + New;
+            return $"{Num}. "+Old+" - "+New;
         }
     }
 }

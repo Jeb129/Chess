@@ -46,16 +46,12 @@ namespace Chess
                         {
                             if (Deck[Row, Col + 1] == null
                                 && Deck[Row, Col + 3] != null
-                                && Deck[Row, Col + 3].Type == Types.Rook
-                                && Deck[Row, Col + 3].Team == Team
                                 && Deck[Row, Col + 3].Fmove)
                                 moves.Add(new int[] { Row, Col + 2 });
 
                             if (Deck[Row, Col - 1] == null
                                 && Deck[Row, Col - 3] == null
                                 && Deck[Row, Col - 4] != null
-                                && Deck[Row, Col - 4].Type == Types.Rook
-                                && Deck[Row, Col - 4].Team == Team
                                 && Deck[Row, Col - 4].Fmove)
                                 moves.Add(new int[] { Row, Col - 2 });
                         }
@@ -67,33 +63,25 @@ namespace Chess
                         int c = Col + 1;
                         while (c < 8 && Deck[Row, c] == null)//Вправо
                             moves.Add(new int[] { Row, c++ });
-                        if (Row >= 0 && Row < 8 && c >= 0 && c < 8
-                            && Deck[Row, c] != null
-                            && Deck[Row, c].Team != Team)
+                        if  (c < 8 && Deck[Row, c].Team != Team)
                             moves.Add(new int[] { Row, c });
 
                         c = Col - 1;
                         while (c >= 0 && Deck[Row, c] == null)//Влево
                             moves.Add(new int[] { Row, c-- });
-                        if (Row >= 0 && Row < 8 && c >= 0 && c < 8
-                            && Deck[Row, c] != null
-                            && Deck[Row, c].Team != Team)
+                        if (c >= 0 && Deck[Row, c].Team != Team)
                             moves.Add(new int[] { Row, c });
 
                         int r = Row + 1;
                         while (r < 8 && Deck[r, Col] == null)//Вверх
                             moves.Add(new int[] { r++, Col });
-                        if (r >= 0 && r < 8 && Col >= 0 && Col < 8
-                            && Deck[r, Col] != null
-                            && Deck[r, Col].Team != Team)
+                        if (r < 8 && Deck[r, Col].Team != Team)
                             moves.Add(new int[] { r, Col });
 
                         r = Row - 1;
                         while (r >= 0 && Deck[r, Col] == null)//вниз
                             moves.Add(new int[] { r--, Col });
-                        if (r >= 0 && r < 8 && Col >= 0 && Col < 8
-                            && Deck[r, Col] != null
-                            && Deck[r, Col].Team != Team)
+                        if (r >= 0 && Deck[r, Col].Team != Team)
                             moves.Add(new int[] { r, Col });
 
                         if (Type == Types.Queen)
@@ -106,36 +94,28 @@ namespace Chess
                         int r = Row + 1;
                         while (c < 8 && r < 8 && Deck[r, c] == null)//1 четверть
                             moves.Add(new int[] { r++, c++ });
-                        if (r > 0 && r < 8 && c > 0 && c < 8
-                            && Deck[r, c] != null
-                            && Deck[r, c].Team != Team)
+                        if (r < 8 && c < 8 && Deck[r, c].Team != Team)
                             moves.Add(new int[] { r, c });
 
                         c = Col + 1;
                         r = Row - 1;
                         while (c < 8 && r >= 0 && Deck[r, c] == null)//2 четверть
                             moves.Add(new int[] { r--, c++ });
-                        if (r >= 0 && r < 8 && c >= 0 && c < 8
-                            && Deck[r, c] != null
-                            && Deck[r, c].Team != Team)
+                        if (r >= 0 && c < 8 && Deck[r, c].Team != Team)
                             moves.Add(new int[] { r, c });
 
                         c = Col - 1;
                         r = Row - 1;
                         while (c >= 0 && r >= 0 && Deck[r, c] == null)//3 четверть
                             moves.Add(new int[] { r--, c-- });
-                        if (r >= 0 && r < 8 && c >= 0 && c < 8
-                            && Deck[r, c] != null
-                            && Deck[r, c].Team != Team)
+                        if (r >= 0 && c >= 0 && Deck[r, c].Team != Team)
                             moves.Add(new int[] { r, c });
 
                         c = Col - 1;
                         r = Row + 1;
                         while (c >= 0 && r < 8 && Deck[r, c] == null)//4 четверть
                             moves.Add(new int[] { r++, c-- });
-                        if (r >= 0 && r < 8 && c >= 0 && c < 8
-                            && Deck[r, c] != null
-                            && Deck[r, c].Team != Team)
+                        if (r < 8 && c >= 0 && c < 8 && Deck[r, c].Team != Team)
                             moves.Add(new int[] { r, c });
                         break;
                     }
@@ -178,7 +158,7 @@ namespace Chess
                             || cross && last.NewPos[1] == Col - 1))
                             moves.Add(new int[] { Row + r, Col - 1 });
 
-                        if (Fmove && Row + 2 * r < 8 && Row + 2 * r >= 0 && Deck[Row + r, Col] == null && Deck[Row + 2 * r, Col] == null)
+                        if (Fmove && Deck[Row + r, Col] == null && Deck[Row + 2 * r, Col] == null)
                             moves.Add(new int[] { Row + 2 * r, Col });
                         break;
                     }
