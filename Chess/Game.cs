@@ -30,30 +30,29 @@ namespace Chess
             { a7, b7, c7, d7, e7, f7, g7, h7 },
             { a8, b8, c8, d8, e8, f8, g8, h8 }
             };
-            //HistoryBox.DataSource = History;
-            //HistoryBox.DisplayMember = "Num";
-            //HistoryBox.ValueMember = "Team";
             //StartDeck();
             //Рокировка
             PutChess(GameDeck, Types.King, Teams.Black, 7, 4);
             PutChess(GameDeck, Types.King, Teams.White, 0, 4);
-            PutChess(GameDeck, Types.Queen, Teams.Black, 7, 3);
-            PutChess(GameDeck, Types.Queen, Teams.White, 0, 3);
-            PutChess(GameDeck, Types.Rook, Teams.Black, 7, 0);
-            PutChess(GameDeck, Types.Rook, Teams.White, 0, 0);
-            PutChess(GameDeck, Types.Rook, Teams.Black, 7, 7);
-            PutChess(GameDeck, Types.Rook, Teams.White, 0, 7);
+            //PutChess(GameDeck, Types.Queen, Teams.Black, 7, 3);
+            //PutChess(GameDeck, Types.Queen, Teams.White, 0, 3);
+            //PutChess(GameDeck, Types.Rook, Teams.Black, 7, 0);
+            //PutChess(GameDeck, Types.Rook, Teams.White, 0, 0);
+            //PutChess(GameDeck, Types.Rook, Teams.Black, 7, 7);
+            //PutChess(GameDeck, Types.Rook, Teams.White, 0, 7);
             //Превращение
-            //PutChess(GameDeck,Types.Pawn, Teams.White, 6, 5);
-            //PutChess(GameDeck, Types.Pawn, Teams.Black, 1, 5);
-
+            PutChess(GameDeck, Types.Pawn, Teams.White, 6, 7);
+            GameDeck[6, 7].Fmove = false;
+            PutChess(GameDeck, Types.Pawn, Teams.Black, 1, 7);
+            GameDeck[1, 7].Fmove = false;
         }
 
-        Button[,] ButtonDeck = new Button[8, 8]; //Визуальная доска из кнопок
-        Figura[,] GameDeck = new Figura[8,8];//Логическая доска из фигур
+        readonly Button[,] ButtonDeck = new Button[8, 8]; //Визуальная доска из кнопок
+        readonly Figura[,] GameDeck = new Figura[8,8];//Логическая доска из фигур
         public static List<MoveHistory> History = new List<MoveHistory>(); //История ходов. Отдельный класс для реализации некоторых возможностей
         bool White2move = true; //Проверка хода белых
         bool Check = false; //Шах на доске
+        bool EndGame = false;
         uint MoveCount = 0; //Счётчик ходов
         //Информация о выбранной фигуре
         Figura SelectF; 
@@ -190,7 +189,8 @@ namespace Chess
             {
                 MoveHistory move = new MoveHistory(++MoveCount, select.Team, select.Type, new int[] { Srow, Scol }, new int[] { r, c });
                 History.Add(move);
-                HistoryBox.Items.Add(move);
+                HistoryBox.DataSource = null;
+                HistoryBox.DataSource = History;
                 White2move = !White2move;
                 Deck[r,c].Fmove = false;
             }
@@ -212,7 +212,7 @@ namespace Chess
                 }
             return false;
         }   
-        void MateChecker(Teams team)
+        int MovesCcheck(Teams team)
         {
             int[] Kpos = KingFind(GameDeck, team);
             if (Kpos.Length == 0)
@@ -220,25 +220,44 @@ namespace Chess
                 MessageBox.Show("ЗА ИМПЕРАТОРА!!!!");
                 Application.Exit();
             }
-                Check = CheckChecker(GameDeck, team, Kpos[0], Kpos[1]);
+            Check = CheckChecker(GameDeck, team, Kpos[0], Kpos[1]);
             if (Check)
-            {
                 ButtonDeck[Kpos[0], Kpos[1]].BackColor = Color.Red;
-                int count = 0;
-                foreach (Figura Ch in GameDeck)
-                    if (Ch != null && Ch.Team == team)
-                    {
-                        List<int[]> moves = CheckRemove(Ch);
-                        count += moves.Count;
-                    }
-                if (count == 0)
-                    MessageBox.Show("Шах и мат");
+            int mC = 0;
+            foreach (Figura Ch in GameDeck)
+                if (Ch != null && Ch.Team == team)
+                {
+                    List<int[]> moves = CheckRemove(Ch);
+                    mC += moves.Count;
+                }
+            return mC;
+        }
+        private void EndCheck(Teams team)
+        {
+            int mC = MovesCcheck(team);
+            List<Figura> f = new List<Figura>();
+            foreach (Figura Ch in GameDeck)
+                if (Ch != null && Ch.Type != Types.King)
+                    f.Add(Ch);
+            if (f.Count == 0 || f.Count == 1 && (f[0].Type == Types.Knight || f[0].Type == Types.Bishop))
+            {
+                MessageBox.Show("Ничья");
+                EndGame = true;
+            }
+            if (Check && mC == 0)
+            {
+                MessageBox.Show("Шах и мат");
+                EndGame = true;
+            }
+            if (!Check && mC == 0)
+            {
+                MessageBox.Show("Пат");
+                EndGame = true;
             }
         }
         private List<int[]> CheckRemove(Figura select)
         {
             List<int[]> moves = select.GetMoves(GameDeck,History);
-            int r = 0;
             int c = 0;
             for (int i = moves.Count - 1; i >= 0; i--)
             {
@@ -250,8 +269,8 @@ namespace Chess
                     {
                         case 2: c = 3; goto case 0;
                         case 6: c = 5; goto case 0;
-                        case 0: r = select.Row;
-                            if (Check || CheckChecker(Deck, select.Team, r, c))
+                        case 0:
+                            if (Check || CheckChecker(Deck, select.Team, select.Row, c))
                             {
                                 moves.RemoveAt(i);
                                 continue;
@@ -259,18 +278,21 @@ namespace Chess
                             break;
                     }
                 int[] Kpos = KingFind(Deck, select.Team);
-                r = Kpos[0];
-                c = Kpos[1];
-                if (CheckChecker(Deck, select.Team, r, c))
+                if (CheckChecker(Deck, select.Team, Kpos[0], Kpos[1]))
                     moves.RemoveAt(i);
             }
             return moves;
         }
         private void Pole_Click(object sender, EventArgs e)
         {
+            if (EndGame)
+            {
+                RestartClick(sender, e);
+                return;
+            }
             Button current = sender as Button;
-            int c = (int)(current.Name[0] - 'a');
-            int r = (int)(int.Parse(current.Name[1].ToString()) - 1);
+            int c = current.Name[0] - 'a';
+            int r = int.Parse(current.Name[1].ToString()) - 1;
             if (GameDeck[r, c] == null && SelectF == null)
                 return;
             HideMoves();
@@ -283,11 +305,11 @@ namespace Chess
                         Possible = true;
                 if (!Possible) return;
                 Moving(GameDeck, SelectF, r, c);
+                EndCheck((Teams)(White2move ? 1 : 0));
                 SelectF = null;
             }
             else
                 ChessSelect(r, c);
-            MateChecker((Teams)Int32.Parse(White2move ? "1" : "0"));
         }
         int[] KingFind(Figura[,] Deck, Teams team)
         {
@@ -346,9 +368,10 @@ namespace Chess
             StartDeck();
             SelectF = null;
             White2move = true;
+            EndGame = false;
             MoveCount = 0;
             History.Clear();
-            HistoryBox.Items.Clear();
+            HistoryBox.DataSource = null;
         }
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
