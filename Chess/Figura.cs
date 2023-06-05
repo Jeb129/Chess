@@ -22,7 +22,7 @@ namespace Chess
         /// </summary>
         /// <param name="Deck"></param>
         /// <returns></returns>
-        public List<int[]> GetMoves(Figura[,] Deck, List<MoveHistory> history)
+        public List<int[]> GetMoves(Figura[,] Deck, List<Move> history)
         {
             List<int[]> moves = new List<int[]>();
             switch (Type)
@@ -68,7 +68,7 @@ namespace Chess
                 if (Deck[moves[i][0], moves[i][1]] != null && Deck[moves[i][0], moves[i][1]].Team == Team)
                     moves.RemoveAt(i);
         }
-        private void GetPawnMoves(Figura[,] Deck, List<MoveHistory> history, List<int[]> moves)
+        private void GetPawnMoves(Figura[,] Deck, List<Move> history, List<int[]> moves)
         {
             int r = 1;
             if (Team == Teams.Black)
@@ -76,14 +76,17 @@ namespace Chess
             if (Deck[Row + r, Col] == null)
                 moves.Add(new int[] { Row + r, Col });
 
-            MoveHistory last = null;
+            Move last = null;
             if (history.Count > 0)
                 last = history[history.Count - 1];
 
-            bool cross = last != null
+            bool cross = 
+                last != null
                 && last.Type == Type
                 && (last.OldPos[0] == 6 || last.OldPos[0] == 1)
-                && last.NewPos[0] == Row;
+                && last.NewPos[0] == Row
+                && (last.NewPos[0] == 3 || last.NewPos[0] == 4);
+
             if (
                 Col < 7
                 && ((Deck[Row + r, Col + 1] != null && Deck[Row + r, Col + 1].Team != Team)
