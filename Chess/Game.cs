@@ -1,15 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Linq;
 using static Chess.Figura;
 
 namespace Chess
@@ -19,7 +11,7 @@ namespace Chess
         public Game()
         {
             InitializeComponent();
-            ButtonDeck = new Button[,] 
+            ButtonDeck = new Button[,]
             {
             { a1, b1, c1, d1, e1, f1, g1, h1 },
             { a2, b2, c2, d2, e2, f2, g2, h2 },
@@ -33,7 +25,7 @@ namespace Chess
         }
 
         readonly Button[,] ButtonDeck = new Button[8, 8]; //Визуальная доска из кнопок
-        readonly Figura[,] GameDeck = new Figura[8,8];//Логическая доска из фигур
+        readonly Figura[,] GameDeck = new Figura[8, 8];//Логическая доска из фигур
 
         public List<DeckHistory> History = new List<DeckHistory>(); //История ходов.
         bool White2move = true; //Проверка хода белых
@@ -42,18 +34,18 @@ namespace Chess
         uint MoveCount = 0; //Счётчик ходов
         uint DrawCount = 0;
         //Информация о выбранной фигуре
-        Figura SelectF; 
+        Figura SelectF;
         List<int[]> Smoves = new List<int[]>();
 
         #region Игровой процесс
-        void Moving(Figura[,] Deck,Figura select, int r, int c, bool Paint = true)
+        void Moving(Figura[,] Deck, Figura select, int r, int c, bool Paint = true)
         {
             Types type = select.Type;
             //Взятие на проходе
-            if (select.Type == Types.Pawn && select.Col != c && Deck[r,c]==null)
+            if (select.Type == Types.Pawn && select.Col != c && Deck[r, c] == null)
                 DelChess(Deck, select.Row, c, Paint);
             //Превращение
-            if (Paint&&select.Type == Types.Pawn && (r == 0 || r == 7))
+            if (Paint && select.Type == Types.Pawn && (r == 0 || r == 7))
             {
                 ChessSetter chessSetter = new ChessSetter(select.Team);
                 chessSetter.ShowDialog();
@@ -64,7 +56,7 @@ namespace Chess
             {
                 if (c == 6)
                 {
-                    PutChess(Deck,Types.Rook, select.Team, r, 5);
+                    PutChess(Deck, Types.Rook, select.Team, r, 5);
                     DelChess(Deck, r, 7);
                 }
                 if (c == 2)
@@ -78,18 +70,18 @@ namespace Chess
             if (type == Types.Pawn || Deck[r, c] != null)
                 d--;
 
-            PutChess(Deck,select.Type, select.Team, r, c,Paint);
+            PutChess(Deck, select.Type, select.Team, r, c, Paint);
             DelChess(Deck, select.Row, select.Col, Paint);
 
             if (Paint)
             {
-                DrawCount = d* ++DrawCount;
+                DrawCount = d * ++DrawCount;
                 Move move = new Move(++MoveCount, select.Team, select.Type, new int[] { select.Row, select.Col }, new int[] { r, c });
                 HistoryBox.Items.Add(move);
                 History.Add(new DeckHistory(move, DeckCopy(GameDeck)));
                 TimerAdd();
                 White2move = !White2move;
-                Deck[r,c].Fmove = false;
+                Deck[r, c].Fmove = false;
             }
         }
         List<int[]> CheckRemove(Figura select)
@@ -134,7 +126,7 @@ namespace Chess
         }
         void EndCheck(Teams team)
         {
-            if (NotEnoughMaterial(Teams.White) && NotEnoughMaterial(Teams.Black) || 
+            if (NotEnoughMaterial(Teams.White) && NotEnoughMaterial(Teams.Black) ||
                 ThreeRepeats() || DrawCount >= 50)
             {
                 GameTime = false;
@@ -145,21 +137,22 @@ namespace Chess
             {
                 GameTime = false;
                 Playing = false;
-                MessageBox.Show(Check ? "Шах и мат. Победа " + (White2move ? "чёрных":"белых") : "Пат");
+                MessageBox.Show(Check ? "Шах и мат. Победа " + (White2move ? "чёрных" : "белых") : "Пат");
             }
+            if (!GameTime) return;
             if (WhiteT <= 0)
             {
                 string win = NotEnoughMaterial(Teams.Black) ? "Ничья" : "Победа чёрных";
                 GameTime = false;
                 Playing = false;
-                MessageBox.Show("Время белых истекло. "+ win);
+                MessageBox.Show("Время белых истекло. " + win);
             }
             if (BlackT <= 0)
             {
                 string win = NotEnoughMaterial(Teams.White) ? "Ничья" : "Победа Белых";
                 GameTime = false;
                 Playing = false;
-                MessageBox.Show("Время чёрных истекло. "+ win);
+                MessageBox.Show("Время чёрных истекло. " + win);
             }
         }
         #endregion
@@ -280,7 +273,7 @@ namespace Chess
                     List<int[]> moves = CheckRemove(Ch);
                     mC += moves.Count;
                 }
-            return mC==0;
+            return mC == 0;
         }
         bool NotEnoughMaterial(Teams team)
         {
@@ -293,7 +286,7 @@ namespace Chess
         bool ThreeRepeats()
         {
             int r = 0;
-            for (int i = History.Count - 2;i>=0;i--)
+            for (int i = History.Count - 2; i >= 0; i--)
                 if (History[i] == History[History.Count - 1])
                     r++;
             return r >= 2;
@@ -317,7 +310,7 @@ namespace Chess
         {
             Figura[,] New = new Figura[8, 8];
             for (int i = 0; i < 8; i++)
-                for(int j = 0; j < 8; j++)
+                for (int j = 0; j < 8; j++)
                     New[i, j] = Old[i, j];
             return New;
         }
@@ -358,7 +351,7 @@ namespace Chess
                 RestartClick(sender, e);
                 return;
             }
-            if(!(sender is Button cur)) return;
+            if (!(sender is Button cur)) return;
             //получаем координаты кнопки
             int c = cur.Name[0] - 'a';
             int r = int.Parse(cur.Name[1].ToString()) - 1;
@@ -366,7 +359,7 @@ namespace Chess
             if (GameDeck[r, c] == null && SelectF == null)
                 return;
             HideMoves();
-            if (SelectF!=null &&(GameDeck[r, c] == null || GameDeck[r, c] != null && GameDeck[r, c].Team != SelectF.Team))
+            if (SelectF != null && (GameDeck[r, c] == null || GameDeck[r, c] != null && GameDeck[r, c].Team != SelectF.Team))
             {
                 if (!IsPossible(c, r)) return;
 
@@ -458,11 +451,11 @@ namespace Chess
                 BlackT--;
             TimeShow();
             if (Playing)
-            EndCheck(White2move ? Teams.White : Teams.Black);
+                EndCheck(White2move ? Teams.White : Teams.Black);
         }
         string TimeFormat(int time)
         {
-            if (time < 0) 
+            if (time < 0)
                 return "";
 
             int h = time / 3600;
@@ -478,7 +471,7 @@ namespace Chess
     }
     public class Move
     {
-        public Move(uint num, Teams team, Types type, int[] oldpos, int[]newpos)
+        public Move(uint num, Teams team, Types type, int[] oldpos, int[] newpos)
         {
             Num = num;
             Team = team;
@@ -516,9 +509,9 @@ namespace Chess
 
         public override string ToString()
         {
-            string Old = $"{(char)(OldPos[1] + 'a')}{OldPos[0]+1}";
-            string New = $"{(char)(NewPos[1] + 'a')}{NewPos[0]+1}";
-            return $"{Num}. "+Old+" - "+New;
+            string Old = $"{(char)(OldPos[1] + 'a')}{OldPos[0] + 1}";
+            string New = $"{(char)(NewPos[1] + 'a')}{NewPos[0] + 1}";
+            return $"{Num}. " + Old + " - " + New;
         }
 
         public static bool operator ==(Move left, Move right)
@@ -543,7 +536,7 @@ namespace Chess
 
         public override bool Equals(object obj)
         {
-            if (!(obj is DeckHistory h)) 
+            if (!(obj is DeckHistory h))
                 return false;
             for (int i = 0; i < 8; i++)
                 for (int j = 0; j < 8; j++)
@@ -551,15 +544,15 @@ namespace Chess
                     if (Deck[i, j] != h.Deck[i, j])
                         return false;
                     else
-                    if (Deck[i, j] != null && 
-                        (Deck[i, j].Type == Types.Pawn || Deck[i, j].Type == Types.King) 
+                    if (Deck[i, j] != null &&
+                        (Deck[i, j].Type == Types.Pawn || Deck[i, j].Type == Types.King)
                         && Last != null)
                     {
                         List<int[]> m1 = Deck[i, j].GetMoves(Deck, Last);
                         List<int[]> m2 = h.Deck[i, j].GetMoves(h.Deck, h.Last);
                         if (m1.Count != m2.Count)
                             return false;
-                        for (int i2 = 0; i2<m1.Count; i2++)
+                        for (int i2 = 0; i2 < m1.Count; i2++)
                             if (m1[i2][0] != m2[i2][0] ||
                                 m1[i2][1] != m2[i2][1])
                                 return false;

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Chess
@@ -16,15 +9,15 @@ namespace Chess
         {
             InitializeComponent();
         }
-        public int Timer {get;set;}
-        public int Increment { get;set;}
+        public int Timer { get; set; }
+        public int Increment { get; set; }
         private void TimerSet_ValueChanged(object sender, EventArgs e)
         {
-            Timer = (int)TimerSet.Value*60;
+            Timer = (int)TimerSet.Value * 60;
             Increment = (int)AddSet.Value;
             if (Timer > 0)
                 SetButton.Text = "Установить контроль";
-            else 
+            else
                 SetButton.Text = "Играть без часов";
         }
 

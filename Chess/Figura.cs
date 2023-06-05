@@ -48,7 +48,7 @@ namespace Chess
                     }
                 case Types.Knight:
                     {
-                        GetKnightMoves(Deck,moves);
+                        GetKnightMoves(Deck, moves);
                         break;
                     }
                 case Types.Pawn:
@@ -75,7 +75,7 @@ namespace Chess
                 r = -1;
             if (Deck[Row + r, Col] == null)
                 moves.Add(new int[] { Row + r, Col });
-            bool cross = 
+            bool cross =
                 last != null
                 && last.Type == Type
                 && (last.OldPos[0] == 6 || last.OldPos[0] == 1)
