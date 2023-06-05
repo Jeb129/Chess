@@ -401,6 +401,7 @@ namespace Chess
             else
                 Black--;
         }
+        #endregion
     }
     public class Move
     {
