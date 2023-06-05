@@ -22,7 +22,7 @@ namespace Chess
         /// </summary>
         /// <param name="Deck"></param>
         /// <returns></returns>
-        public List<int[]> GetMoves(Figura[,] Deck, List<DeckHistory> history)
+        public List<int[]> GetMoves(Figura[,] Deck, Move last)
         {
             List<int[]> moves = new List<int[]>();
             switch (Type)
@@ -53,7 +53,7 @@ namespace Chess
                     }
                 case Types.Pawn:
                     {
-                        GetPawnMoves(Deck, history[history.Count - 1].Last, moves);
+                        GetPawnMoves(Deck, last, moves);
                         break;
                     }
             }
