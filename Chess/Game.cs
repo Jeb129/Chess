@@ -258,11 +258,13 @@ namespace Chess
                     a.BackColor = Color.Peru;
                 else
                     a.BackColor = Color.PeachPuff;
-            if (Check)
-            {
-                int[] kpos = KingFind(GameDeck, (White2move ? Teams.White : Teams.Black));
-                ButtonDeck[kpos[0],kpos[1]].BackColor = Color.Red;
-            }
+        }
+        void CheckShow()
+        {
+            if (!Check)
+                return;
+            int[] kpos = KingFind(GameDeck, (White2move ? Teams.White : Teams.Black));
+            ButtonDeck[kpos[0], kpos[1]].BackColor = Color.Red;
         }
         void ClearDeck()
         {
@@ -282,8 +284,6 @@ namespace Chess
                 Application.Exit();
             }
             Check = CheckChecker(GameDeck, team, Kpos[0], Kpos[1]);
-            if (Check)
-                ButtonDeck[Kpos[0], Kpos[1]].BackColor = Color.Red;
             int mC = 0;
             foreach (Figura Ch in GameDeck)
                 if (Ch != null && Ch.Team == team)
@@ -359,6 +359,7 @@ namespace Chess
             }
             else
                 ChessSelect(r, c);
+            CheckShow();
         }
         bool IsPossible(int c, int r)
         {
