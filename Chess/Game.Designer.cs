@@ -112,6 +112,7 @@
             this.HistoryBox = new System.Windows.Forms.ListBox();
             this.BlackTimer = new System.Windows.Forms.Label();
             this.RestartButton = new System.Windows.Forms.Button();
+            this.WhiteTimer = new System.Windows.Forms.Label();
             this.Deck.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1261,8 +1262,10 @@
             // 
             // HistoryBox
             // 
+            this.HistoryBox.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.HistoryBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.HistoryBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.HistoryBox.ForeColor = System.Drawing.Color.White;
             this.HistoryBox.FormattingEnabled = true;
             this.HistoryBox.ItemHeight = 29;
             this.HistoryBox.Location = new System.Drawing.Point(660, 130);
@@ -1285,7 +1288,7 @@
             // RestartButton
             // 
             this.RestartButton.BackColor = System.Drawing.Color.YellowGreen;
-            this.RestartButton.FlatAppearance.BorderColor = System.Drawing.Color.DarkGreen;
+            this.RestartButton.FlatAppearance.BorderColor = System.Drawing.Color.ForestGreen;
             this.RestartButton.FlatAppearance.BorderSize = 5;
             this.RestartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RestartButton.Font = new System.Drawing.Font("Ravie", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1298,13 +1301,26 @@
             this.RestartButton.UseVisualStyleBackColor = false;
             this.RestartButton.Click += new System.EventHandler(this.RestartClick);
             // 
+            // WhiteTimer
+            // 
+            this.WhiteTimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WhiteTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WhiteTimer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.WhiteTimer.Location = new System.Drawing.Point(660, 550);
+            this.WhiteTimer.Name = "WhiteTimer";
+            this.WhiteTimer.Size = new System.Drawing.Size(200, 70);
+            this.WhiteTimer.TabIndex = 69;
+            this.WhiteTimer.Text = "000 : 00";
+            this.WhiteTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Green;
+            this.BackColor = System.Drawing.Color.DarkGreen;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1262, 673);
+            this.ClientSize = new System.Drawing.Size(902, 673);
+            this.Controls.Add(this.WhiteTimer);
             this.Controls.Add(this.RestartButton);
             this.Controls.Add(this.BlackTimer);
             this.Controls.Add(this.HistoryBox);
@@ -1404,5 +1420,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label BlackTimer;
         private System.Windows.Forms.Button RestartButton;
+        private System.Windows.Forms.Label WhiteTimer;
     }
 }

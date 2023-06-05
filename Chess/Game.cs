@@ -30,24 +30,6 @@ namespace Chess
             { a7, b7, c7, d7, e7, f7, g7, h7 },
             { a8, b8, c8, d8, e8, f8, g8, h8 }
             };
-            //StartDeck();
-            //Рокировка
-            PutChess(GameDeck, Types.King, Teams.Black, 7, 4);
-            PutChess(GameDeck, Types.King, Teams.White, 0, 4);
-            //PutChess(GameDeck, Types.Queen, Teams.Black, 7, 3);
-            //PutChess(GameDeck, Types.Queen, Teams.White, 0, 3);
-            //PutChess(GameDeck, Types.Rook, Teams.Black, 7, 0);
-            //PutChess(GameDeck, Types.Rook, Teams.White, 0, 0);
-            //PutChess(GameDeck, Types.Rook, Teams.Black, 7, 7);
-            //PutChess(GameDeck, Types.Rook, Teams.White, 0, 7);
-            //Превращение
-            PutChess(GameDeck, Types.Pawn, Teams.White, 5, 7);
-            PutChess(GameDeck, Types.Pawn, Teams.Black, 6, 6);
-            GameDeck[5, 7].Fmove = false;
-            GameDeck[6, 6].Fmove = false;
-            GameDeck[7, 4].Fmove = false;
-            GameDeck[0, 4].Fmove = false;
-            History.Add(new DeckHistory(null, DeckCopy(GameDeck)));
         }
 
         readonly Button[,] ButtonDeck = new Button[8, 8]; //Визуальная доска из кнопок
@@ -157,12 +139,12 @@ namespace Chess
             if (NEM || TR || DrawCount >= 50)
             {
                 MessageBox.Show("Ничья");
-                Playing = true;
+                Playing = false;
             }
             if (NM)
             {
                 MessageBox.Show(Check ? "Шах и мат" : "Пат");
-                Playing = true;
+                Playing = false;
             }
         }
         #endregion
@@ -349,7 +331,7 @@ namespace Chess
         #region Обработчики
         private void Pole_Click(object sender, EventArgs e)
         {
-            if (Playing)
+            if (!Playing)
             {
                 RestartClick(sender, e);
                 return;
@@ -395,7 +377,7 @@ namespace Chess
             StartDeck();
             SelectF = null;
             White2move = true;
-            Playing = false;
+            Playing = true;
             MoveCount = 0;
             HistoryBox.Items.Clear();
             History = new List<DeckHistory>() { new DeckHistory(null, DeckCopy(GameDeck)) };
