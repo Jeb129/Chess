@@ -258,6 +258,11 @@ namespace Chess
                     a.BackColor = Color.Peru;
                 else
                     a.BackColor = Color.PeachPuff;
+            if (Check)
+            {
+                int[] kpos = KingFind(GameDeck, (White2move ? Teams.White : Teams.Black));
+                ButtonDeck[kpos[0],kpos[1]].BackColor = Color.Red;
+            }
         }
         void ClearDeck()
         {
