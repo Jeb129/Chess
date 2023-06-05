@@ -50,7 +50,6 @@ namespace Chess
         readonly Button[,] ButtonDeck = new Button[8, 8]; //Визуальная доска из кнопок
         readonly static Figura[,] GameDeck = new Figura[8,8];//Логическая доска из фигур
 
-        readonly List<Move> MoveHistory = new List<Move>();
         public List<DeckHistory> History = new List<DeckHistory>() {new DeckHistory(null, DeckCopy(GameDeck)) }; //История ходов.
         bool White2move = true; //Проверка хода белых
         bool Check = false; //Шах на доске
@@ -211,9 +210,7 @@ namespace Chess
             if (Paint)
             {
                 Move move = new Move(++MoveCount, select.Team, select.Type, new int[] { select.Row, select.Col }, new int[] { r, c });
-                MoveHistory.Add(move);
-                HistoryBox.DataSource = null;
-                HistoryBox.DataSource = MoveHistory;
+                HistoryBox.Items.Add(move);
                 White2move = !White2move;
                 Deck[r,c].Fmove = false;
             }
@@ -375,8 +372,8 @@ namespace Chess
             White2move = true;
             EndGame = false;
             MoveCount = 0;
-            History.Clear();
-            HistoryBox.DataSource = null;
+            HistoryBox.Items.Clear();
+            History = new List<DeckHistory>() { new DeckHistory(null, DeckCopy(GameDeck)) };
         }
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
