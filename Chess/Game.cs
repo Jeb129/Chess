@@ -210,7 +210,7 @@ namespace Chess
                 }
             }
             //считаем ходы без взятия или движения пешки
-            uint d = 1;
+            byte d = 1;
             if (type == Types.Pawn || Deck[r, c] != null)
                 d--;
 
@@ -219,7 +219,7 @@ namespace Chess
 
             if (Paint)
             {
-                DrawCount += d;
+                DrawCount = d* ++DrawCount;
                 Move move = new Move(++MoveCount, select.Team, select.Type, new int[] { select.Row, select.Col }, new int[] { r, c });
                 HistoryBox.Items.Add(move);
                 History.Add(new DeckHistory(move, DeckCopy(GameDeck)));
