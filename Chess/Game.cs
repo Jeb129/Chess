@@ -464,16 +464,15 @@ namespace Chess
         {
             if (time < 0) 
                 return "";
-            string result = "";
 
             int h = time / 3600;
             int m = (time % 3600) / 60;
             int s = ((time % 3600) % 60) % 60;
 
-            result += h > 0 ? h.ToString() + " : ": "";
-            result += result.Length > 0 ? m.ToString("00") : m.ToString() + " : ";
-            result += s.ToString("00");
-            return result;
+            if (h >= 1)
+                return $"{h} : {m:00} : {s:00}";
+            else
+                return $"{m} : {s:00}";
         }
         #endregion
     }
