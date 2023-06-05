@@ -48,9 +48,10 @@ namespace Chess
         }
 
         readonly Button[,] ButtonDeck = new Button[8, 8]; //Визуальная доска из кнопок
-        readonly Figura[,] GameDeck = new Figura[8,8];//Логическая доска из фигур
+        readonly static Figura[,] GameDeck = new Figura[8,8];//Логическая доска из фигур
 
-        public static List<Move> History = new List<Move>(); //История ходов.
+        readonly List<Move> MoveHistory = new List<Move>();
+        public List<DeckHistory> History = new List<DeckHistory>() {new DeckHistory(null, DeckCopy(GameDeck)) }; //История ходов.
         bool White2move = true; //Проверка хода белых
         bool Check = false; //Шах на доске
         bool EndGame = false;
@@ -210,9 +211,9 @@ namespace Chess
             if (Paint)
             {
                 Move move = new Move(++MoveCount, select.Team, select.Type, new int[] { select.Row, select.Col }, new int[] { r, c });
-                History.Add(move);
+                MoveHistory.Add(move);
                 HistoryBox.DataSource = null;
-                HistoryBox.DataSource = History;
+                HistoryBox.DataSource = MoveHistory;
                 White2move = !White2move;
                 Deck[r,c].Fmove = false;
             }
@@ -269,7 +270,6 @@ namespace Chess
                 EndGame = true;
             }
         }
-
         private bool NotEnoughMaterial()
         {
             List<Figura> f = new List<Figura>();
@@ -319,7 +319,7 @@ namespace Chess
                 }
             return Kpos;
         }
-        Figura[,] DeckCopy(Figura[,] Old)
+        static Figura[,] DeckCopy(Figura[,] Old)
         {
             Figura[,] New = new Figura[8, 8];
             for (int i = 0; i < 8; i++)
@@ -399,16 +399,82 @@ namespace Chess
         public Types Type { get; set; }
         public int[] OldPos { get; set; }
         public int[] NewPos { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Move move &&
+                   Num == move.Num &&
+                   Team == move.Team &&
+                   Type == move.Type &&
+                   OldPos[0] == move.OldPos[0] &&
+                   OldPos[1] == move.OldPos[1] &&
+                   NewPos[0] == move.NewPos[0] &&
+                   NewPos[1] == move.NewPos[1];
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -2068199779;
+            hashCode = hashCode * -1521134295 + Num.GetHashCode();
+            hashCode = hashCode * -1521134295 + Team.GetHashCode();
+            hashCode = hashCode * -1521134295 + Type.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<int[]>.Default.GetHashCode(OldPos);
+            hashCode = hashCode * -1521134295 + EqualityComparer<int[]>.Default.GetHashCode(NewPos);
+            return hashCode;
+        }
+
         public override string ToString()
         {
-            string Old = $"{(char)(OldPos[0] + 'a')}{OldPos[1]}";
-            string New = $"{(char)(NewPos[0] + 'a')}{NewPos[1]}";
+            string Old = $"{(char)(OldPos[1] + 'a')}{OldPos[0]+1}";
+            string New = $"{(char)(NewPos[1] + 'a')}{NewPos[0]+1}";
             return $"{Num}. "+Old+" - "+New;
+        }
+
+        public static bool operator ==(Move left, Move right)
+        {
+            return EqualityComparer<Move>.Default.Equals(left, right);
+        }
+
+        public static bool operator !=(Move left, Move right)
+        {
+            return !(left == right);
         }
     }
     public class DeckHistory
     {
+        public DeckHistory(Move last, Figura[,] deck)
+        {
+            Last = last;
+            Deck = deck;
+        }
         public Move Last { get; set; }
         public Figura[,] Deck { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is DeckHistory history)) 
+                return false;
+            bool DeckEqual = true;
+            for (int i = 0; i < 8; i++)
+                for (int j = 0; j < 8; j++)
+                    if (Deck[i, j] != history.Deck[i,j])
+                        DeckEqual = false;
+            return DeckEqual && Last == history.Last;
+        }
+        public override int GetHashCode()
+        {
+            int hashCode = 233958889;
+            hashCode = hashCode * -1521134295 + EqualityComparer<Move>.Default.GetHashCode(Last);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Figura[,]>.Default.GetHashCode(Deck);
+            return hashCode;
+        }
+        public static bool operator ==(DeckHistory left, DeckHistory right)
+        {
+            return EqualityComparer<DeckHistory>.Default.Equals(left, right);
+        }
+        public static bool operator !=(DeckHistory left, DeckHistory right)
+        {
+            return !(left == right);
+        }
     }
 }
