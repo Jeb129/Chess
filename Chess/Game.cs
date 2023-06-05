@@ -62,7 +62,109 @@ namespace Chess
         //Информация о выбранной фигуре
         Figura SelectF; 
         List<int[]> Smoves = new List<int[]>();
+        #region Игровой процесс
+        void Moving(Figura[,] Deck,Figura select, int r, int c, bool Paint = true)
+        {
+            Types type = select.Type;
+            //Взятие на проходе
+            if (select.Type == Types.Pawn && select.Col != c && Deck[r,c]==null)
+                DelChess(Deck, select.Row, c, Paint);
+            //Превращение
+            if (Paint&&select.Type == Types.Pawn && (r == 0 || r == 7))
+            {
+                ChessSetter chessSetter = new ChessSetter(select.Team);
+                chessSetter.ShowDialog();
+                select.Type = chessSetter.Chosed;
+            }
+            //Рокировка
+            if (select.Fmove && select.Type == Types.King && (r == 0 || r == 7))
+            {
+                if (c == 6)
+                {
+                    PutChess(Deck,Types.Rook, select.Team, r, 5);
+                    DelChess(Deck, r, 7);
+                }
+                if (c == 2)
+                {
+                    PutChess(Deck, Types.Rook, select.Team, r, 3);
+                    DelChess(Deck, r, 0);
+                }
+            }
+            //считаем ходы без взятия или движения пешки
+            byte d = 1;
+            if (type == Types.Pawn || Deck[r, c] != null)
+                d--;
 
+            PutChess(Deck,select.Type, select.Team, r, c,Paint);
+            DelChess(Deck, select.Row, select.Col, Paint);
+
+            if (Paint)
+            {
+                DrawCount = d* ++DrawCount;
+                Move move = new Move(++MoveCount, select.Team, select.Type, new int[] { select.Row, select.Col }, new int[] { r, c });
+                HistoryBox.Items.Add(move);
+                History.Add(new DeckHistory(move, DeckCopy(GameDeck)));
+                White2move = !White2move;
+                Deck[r,c].Fmove = false;
+            }
+        }
+        List<int[]> CheckRemove(Figura select)
+        {
+            List<int[]> moves = select.GetMoves(GameDeck, History[History.Count - 1].Last);
+            int c = 0;
+            for (int i = moves.Count - 1; i >= 0; i--)
+            {
+                Figura[,] Deck = DeckCopy(GameDeck);
+                Moving(Deck, select, moves[i][0], moves[i][1], false);
+                //Рокировка через шах
+                if (select.Type == Types.King && select.Fmove && (moves[i][1] == 2 || moves[i][1] == 6))
+                    switch (moves[i][1])
+                    {
+                        case 2: c = 3; goto case 0;
+                        case 6: c = 5; goto case 0;
+                        case 0:
+                            if (Check || CheckChecker(Deck, select.Team, select.Row, c))
+                            {
+                                moves.RemoveAt(i);
+                                continue;
+                            }
+                            break;
+                    }
+                int[] Kpos = KingFind(Deck, select.Team);
+                if (CheckChecker(Deck, select.Team, Kpos[0], Kpos[1]))
+                    moves.RemoveAt(i);
+            }
+            return moves;
+        }
+        bool CheckChecker(Figura[,] Deck, Teams team, int Krow, int Kcol)
+        {
+            foreach (Figura Ch in Deck)
+                if (Ch != null && Ch.Team != team)
+                {
+                    List<int[]> Premove = Ch.GetMoves(Deck, History[History.Count - 1].Last);
+                    foreach (int[] m2 in Premove)
+                        if (Krow == m2[0] && Kcol == m2[1])
+                            return true;
+                }
+            return false;
+        }
+        void EndCheck(Teams team)
+        {
+            bool NM = NoMoves(team);
+            bool NEM = NotEnoughMaterial();
+            bool TR = ThreeRepeats();
+            if (NEM || TR || DrawCount >= 50)
+            {
+                MessageBox.Show("Ничья");
+                EndGame = true;
+            }
+            if (NM)
+            {
+                MessageBox.Show(Check ? "Шах и мат" : "Пат");
+                EndGame = true;
+            }
+        }
+        #endregion
         #region Графика
         /// <summary>
         /// Стандартная расстановка фигур
@@ -72,23 +174,23 @@ namespace Chess
             //Ставим пешки
             for (int i = 0; i < 8; i++)
             {
-                PutChess(GameDeck,Types.Pawn, Teams.White,1, i);
-                PutChess(GameDeck, Types.Pawn, Teams.Black,6, i);
+                PutChess(GameDeck, Types.Pawn, Teams.White, 1, i);
+                PutChess(GameDeck, Types.Pawn, Teams.Black, 6, i);
             }
             //Ставим фигуры слева от короля и короля
             for (int i = 0; i < 5; i++)
             {
-                PutChess(GameDeck, (Types)i, Teams.White,0, i);
-                PutChess(GameDeck, (Types)i, Teams.Black,7, i);
+                PutChess(GameDeck, (Types)i, Teams.White, 0, i);
+                PutChess(GameDeck, (Types)i, Teams.Black, 7, i);
             }
             //Фигуры справа
             for (int i = 0; i < 4; i++)
             {
-                PutChess(GameDeck, (Types)(3-i), Teams.White,0, i + 4);
-                PutChess(GameDeck, (Types)(3-i), Teams.Black,7, i + 4);
+                PutChess(GameDeck, (Types)(3 - i), Teams.White, 0, i + 4);
+                PutChess(GameDeck, (Types)(3 - i), Teams.Black, 7, i + 4);
             }
         }
-        void PutChess(Figura[,] Deck, Types type, Teams team, int row, int col,bool Paint = true)
+        void PutChess(Figura[,] Deck, Types type, Teams team, int row, int col, bool Paint = true)
         {
             Figura chess = new Figura(type, team, row, col);
             if (Deck[row, col] != null && team == Deck[row, col].Team)
@@ -97,7 +199,7 @@ namespace Chess
             if (Paint)
                 PaintChess(row, col);
         }
-        void DelChess(Figura[,]Deck,int row, int col,bool Paint = true)
+        void DelChess(Figura[,] Deck, int row, int col, bool Paint = true)
         {
             Deck[row, col] = null;
             if (Paint)
@@ -182,112 +284,6 @@ namespace Chess
             HideMoves();
         }
         #endregion
-        void Moving(Figura[,] Deck,Figura select, int r, int c, bool Paint = true)
-        {
-            Types type = select.Type;
-            //Взятие на проходе
-            if (select.Type == Types.Pawn && select.Col != c && Deck[r,c]==null)
-                DelChess(Deck, select.Row, c, Paint);
-            //Превращение
-            if (Paint&&select.Type == Types.Pawn && (r == 0 || r == 7))
-            {
-                ChessSetter chessSetter = new ChessSetter(select.Team);
-                chessSetter.ShowDialog();
-                select.Type = chessSetter.Chosed;
-            }
-            //Рокировка
-            if (select.Fmove && select.Type == Types.King && (r == 0 || r == 7))
-            {
-                if (c == 6)
-                {
-                    PutChess(Deck,Types.Rook, select.Team, r, 5);
-                    DelChess(Deck, r, 7);
-                }
-                if (c == 2)
-                {
-                    PutChess(Deck, Types.Rook, select.Team, r, 3);
-                    DelChess(Deck, r, 0);
-                }
-            }
-            //считаем ходы без взятия или движения пешки
-            byte d = 1;
-            if (type == Types.Pawn || Deck[r, c] != null)
-                d--;
-
-            PutChess(Deck,select.Type, select.Team, r, c,Paint);
-            DelChess(Deck, select.Row, select.Col, Paint);
-
-            if (Paint)
-            {
-                DrawCount = d* ++DrawCount;
-                Move move = new Move(++MoveCount, select.Team, select.Type, new int[] { select.Row, select.Col }, new int[] { r, c });
-                HistoryBox.Items.Add(move);
-                History.Add(new DeckHistory(move, DeckCopy(GameDeck)));
-                White2move = !White2move;
-                Deck[r,c].Fmove = false;
-            }
-        }
-        /// <summary>
-        /// Проверка шахов
-        /// </summary>
-        /// <param name="Ch"></param>
-        /// <returns></returns>
-        bool CheckChecker(Figura[,] Deck,Teams team,int Krow,int Kcol)
-        {
-            foreach (Figura Ch in Deck)
-                if (Ch != null && Ch.Team != team)
-                {
-                    List<int[]> Premove = Ch.GetMoves(Deck,History[History.Count-1].Last);
-                    foreach (int[] m2 in Premove)
-                        if (Krow == m2[0] && Kcol == m2[1])
-                            return true;
-                }
-            return false;
-        }
-        List<int[]> CheckRemove(Figura select)
-        {
-            List<int[]> moves = select.GetMoves(GameDeck, History[History.Count - 1].Last);
-            int c = 0;
-            for (int i = moves.Count - 1; i >= 0; i--)
-            {
-                Figura[,] Deck = DeckCopy(GameDeck);
-                Moving(Deck, select, moves[i][0], moves[i][1], false);
-                //Рокировка через шах
-                if (select.Type == Types.King && select.Fmove && (moves[i][1] == 2 || moves[i][1] == 6))
-                    switch (moves[i][1])
-                    {
-                        case 2: c = 3; goto case 0;
-                        case 6: c = 5; goto case 0;
-                        case 0:
-                            if (Check || CheckChecker(Deck, select.Team, select.Row, c))
-                            {
-                                moves.RemoveAt(i);
-                                continue;
-                            }
-                            break;
-                    }
-                int[] Kpos = KingFind(Deck, select.Team);
-                if (CheckChecker(Deck, select.Team, Kpos[0], Kpos[1]))
-                    moves.RemoveAt(i);
-            }
-            return moves;
-        }
-        void EndCheck(Teams team)
-        {
-            bool NM = NoMoves(team);
-            bool NEM = NotEnoughMaterial();
-            bool TR = ThreeRepeats();
-            if (NEM || TR || DrawCount >= 50)
-            {
-                MessageBox.Show("Ничья");
-                EndGame = true;
-            }
-            if (NM)
-            {
-                MessageBox.Show(Check ? "Шах и мат" : "Пат");
-                EndGame = true;
-            }
-        }
         #region Проверка состояния доски
         bool NoMoves(Teams team)
         {
@@ -326,6 +322,7 @@ namespace Chess
             return r >= 2;
         }
         #endregion
+        #region Вспомогательные методы
         int[] KingFind(Figura[,] Deck, Teams team)
         {
             int[] Kpos = new int[0];
@@ -347,14 +344,7 @@ namespace Chess
                     New[i, j] = Old[i, j];
             return New;
         }
-        void ChessSelect(int r, int c)
-        {
-            if (GameDeck[r, c] != null && GameDeck[r, c].Team == (Teams)1 != White2move)
-                return;
-            SelectF = GameDeck[r, c];
-            Smoves = CheckRemove(SelectF);
-            ShowMoves();
-        }
+        #endregion
         #region Обработчики
         private void Pole_Click(object sender, EventArgs e)
         {
@@ -382,13 +372,21 @@ namespace Chess
             else
                 ChessSelect(r, c);
         }
-        private bool IsPossible(int c, int r)
+        bool IsPossible(int c, int r)
         {
             bool Possible = false;
             for (int i = 0; i < Smoves.Count && !Possible; i++)
                 if (r == Smoves[i][0] && c == Smoves[i][1])
                     Possible = true;
             return Possible;
+        }
+        void ChessSelect(int r, int c)
+        {
+            if (GameDeck[r, c] != null && GameDeck[r, c].Team == (Teams)1 != White2move)
+                return;
+            SelectF = GameDeck[r, c];
+            Smoves = CheckRemove(SelectF);
+            ShowMoves();
         }
         private void RestartClick(object sender, EventArgs e)
         {
