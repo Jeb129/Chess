@@ -58,6 +58,7 @@ namespace Chess
         bool Check = false; //Шах на доске
         bool EndGame = false;
         uint MoveCount = 0; //Счётчик ходов
+        uint DrawCount = 0;
         //Информация о выбранной фигуре
         Figura SelectF; 
         List<int[]> Smoves = new List<int[]>();
@@ -183,6 +184,7 @@ namespace Chess
         #endregion
         void Moving(Figura[,] Deck,Figura select, int r, int c, bool Paint = true)
         {
+            Types type = select.Type;
             //Взятие на проходе
             if (select.Type == Types.Pawn && select.Col != c && Deck[r,c]==null)
                 DelChess(Deck, select.Row, c, Paint);
@@ -207,11 +209,17 @@ namespace Chess
                     DelChess(Deck, r, 0);
                 }
             }
+            //считаем ходы без взятия или движения пешки
+            uint d = 1;
+            if (type == Types.Pawn || Deck[r, c] != null)
+                d--;
 
             PutChess(Deck,select.Type, select.Team, r, c,Paint);
             DelChess(Deck, select.Row, select.Col, Paint);
+
             if (Paint)
             {
+                DrawCount += d;
                 Move move = new Move(++MoveCount, select.Team, select.Type, new int[] { select.Row, select.Col }, new int[] { r, c });
                 HistoryBox.Items.Add(move);
                 History.Add(new DeckHistory(move, DeckCopy(GameDeck)));
@@ -269,7 +277,7 @@ namespace Chess
             bool NM = NoMoves(team);
             bool NEM = NotEnoughMaterial();
             bool TR = ThreeRepeats();
-            if (NEM || TR)
+            if (NEM || TR || DrawCount >= 50)
             {
                 MessageBox.Show("Ничья");
                 EndGame = true;
@@ -280,7 +288,7 @@ namespace Chess
                 EndGame = true;
             }
         }
-        #region Проверка ничьей
+        #region Проверка состояния доски
         bool NoMoves(Teams team)
         {
             int[] Kpos = KingFind(GameDeck, team);
