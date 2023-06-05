@@ -390,7 +390,6 @@ namespace Chess
             Application.Exit();
         }
         #endregion
-
         #region Игра по времени
         int White = 0;
         int Black = 0;
