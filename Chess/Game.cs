@@ -24,21 +24,22 @@ namespace Chess
             };
         }
 
-        readonly Button[,] ButtonDeck = new Button[8, 8]; //Визуальная доска из кнопок
-        readonly Figura[,] GameDeck = new Figura[8, 8];//Логическая доска из фигур
+        private readonly Button[,] ButtonDeck = new Button[8, 8]; //Визуальная доска из кнопок
+        private readonly Figura[,] GameDeck = new Figura[8, 8];//Логическая доска из фигур
 
         public List<DeckHistory> History = new List<DeckHistory>(); //История ходов.
-        bool White2move = true; //Проверка хода белых
-        bool Check = false; //Шах на доске
-        bool Playing = false;
-        uint MoveCount = 0; //Счётчик ходов
-        uint DrawCount = 0;
+        private bool White2move = true; //Проверка хода белых
+        private bool Check = false; //Шах на доске
+        private bool Playing = false;
+        private uint MoveCount = 0; //Счётчик ходов
+        private uint DrawCount = 0;
+
         //Информация о выбранной фигуре
-        Figura SelectF;
-        List<int[]> Smoves = new List<int[]>();
+        private Figura SelectF;
+        private List<int[]> Smoves = new List<int[]>();
 
         #region Игровой процесс
-        void Moving(Figura[,] Deck, Figura select, int r, int c, bool Paint = true)
+        private void Moving(Figura[,] Deck, Figura select, int r, int c, bool Paint = true)
         {
             Types type = select.Type;
             //Взятие на проходе
@@ -84,7 +85,8 @@ namespace Chess
                 Deck[r, c].Fmove = false;
             }
         }
-        List<int[]> CheckRemove(Figura select)
+
+        private List<int[]> CheckRemove(Figura select)
         {
             List<int[]> moves = select.GetMoves(GameDeck, History[History.Count - 1].Last);
             int c = 0;
@@ -112,7 +114,8 @@ namespace Chess
             }
             return moves;
         }
-        bool CheckChecker(Figura[,] Deck, Teams team, int Krow, int Kcol)
+
+        private bool CheckChecker(Figura[,] Deck, Teams team, int Krow, int Kcol)
         {
             foreach (Figura Ch in Deck)
                 if (Ch != null && Ch.Team != team)
@@ -124,7 +127,8 @@ namespace Chess
                 }
             return false;
         }
-        void EndCheck(Teams team)
+
+        private void EndCheck(Teams team)
         {
             if (NotEnoughMaterial(Teams.White) && NotEnoughMaterial(Teams.Black) ||
                 ThreeRepeats() || DrawCount >= 50)
@@ -157,7 +161,7 @@ namespace Chess
         }
         #endregion
         #region Графика
-        void PutChess(Figura[,] Deck, Types type, Teams team, int row, int col, bool Paint = true)
+        private void PutChess(Figura[,] Deck, Types type, Teams team, int row, int col, bool Paint = true)
         {
             Figura chess = new Figura(type, team, row, col);
             if (Deck[row, col] != null && team == Deck[row, col].Team)
@@ -166,18 +170,20 @@ namespace Chess
             if (Paint)
                 PaintChess(row, col);
         }
-        void DelChess(Figura[,] Deck, int row, int col, bool Paint = true)
+
+        private void DelChess(Figura[,] Deck, int row, int col, bool Paint = true)
         {
             Deck[row, col] = null;
             if (Paint)
                 PaintChess(row, col);
         }
+
         /// <summary>
         /// Отрисовка конкретного поля
         /// </summary>
         /// <param name="row"></param>
         /// <param name="col"></param>
-        void PaintChess(int row, int col)
+        private void PaintChess(int row, int col)
         {
             Figura chess = GameDeck[row, col];
             if (chess == null)
@@ -229,13 +235,15 @@ namespace Chess
                 }
             ButtonDeck[row, col].Refresh();
         }
-        void ShowMoves()
+
+        private void ShowMoves()
         {
             ButtonDeck[SelectF.Row, SelectF.Col].BackColor = Color.Khaki;
             foreach (int[] m in Smoves)
                 ButtonDeck[m[0], m[1]].BackColor = Color.DarkSeaGreen;
         }
-        void HideMoves()
+
+        private void HideMoves()
         {
             foreach (Button a in ButtonDeck)
                 if (a.Tag.ToString() == "B")
@@ -243,21 +251,23 @@ namespace Chess
                 else
                     a.BackColor = Color.PeachPuff;
         }
-        void CheckShow()
+
+        private void CheckShow()
         {
             if (!Check)
                 return;
             int[] kpos = KingFind(GameDeck, (White2move ? Teams.White : Teams.Black));
             ButtonDeck[kpos[0], kpos[1]].BackColor = Color.Red;
         }
-        void TimeShow()
+
+        private void TimeShow()
         {
             WhiteTimer.Text = TimeFormat(WhiteT);
             BlackTimer.Text = TimeFormat(BlackT);
         }
         #endregion
         #region Проверка состояния доски
-        bool NoMoves(Teams team)
+        private bool NoMoves(Teams team)
         {
             int[] Kpos = KingFind(GameDeck, team);
             if (Kpos.Length == 0)
@@ -275,7 +285,8 @@ namespace Chess
                 }
             return mC == 0;
         }
-        bool NotEnoughMaterial(Teams team)
+
+        private bool NotEnoughMaterial(Teams team)
         {
             List<Figura> f = new List<Figura>();
             foreach (Figura Ch in GameDeck)
@@ -283,7 +294,8 @@ namespace Chess
                     f.Add(Ch);
             return f.Count == 0 || f.Count == 1 && (f[0].Type == Types.Knight || f[0].Type == Types.Bishop);
         }
-        bool ThreeRepeats()
+
+        private bool ThreeRepeats()
         {
             int r = 0;
             for (int i = History.Count - 2; i >= 0; i--)
@@ -293,7 +305,7 @@ namespace Chess
         }
         #endregion
         #region Вспомогательные методы
-        int[] KingFind(Figura[,] Deck, Teams team)
+        private int[] KingFind(Figura[,] Deck, Teams team)
         {
             int[] Kpos = new int[0];
             foreach (Figura Ch in Deck)
@@ -306,7 +318,8 @@ namespace Chess
                 }
             return Kpos;
         }
-        Figura[,] DeckCopy(Figura[,] Old)
+
+        private Figura[,] DeckCopy(Figura[,] Old)
         {
             Figura[,] New = new Figura[8, 8];
             for (int i = 0; i < 8; i++)
@@ -314,14 +327,16 @@ namespace Chess
                     New[i, j] = Old[i, j];
             return New;
         }
-        void ClearDeck()
+
+        private void ClearDeck()
         {
             for (int i = 0; i < 8; i++)
                 for (int j = 0; j < 8; j++)
                     DelChess(GameDeck, i, j);
             HideMoves();
         }
-        void StartDeck()
+
+        private void StartDeck()
         {
             //Ставим пешки
             for (int i = 0; i < 8; i++)
@@ -372,7 +387,8 @@ namespace Chess
             CheckShow();
             TimeShow();
         }
-        bool IsPossible(int c, int r)
+
+        private bool IsPossible(int c, int r)
         {
             bool Possible = false;
             for (int i = 0; i < Smoves.Count && !Possible; i++)
@@ -380,7 +396,8 @@ namespace Chess
                     Possible = true;
             return Possible;
         }
-        void ChessSelect(int r, int c)
+
+        private void ChessSelect(int r, int c)
         {
             if (GameDeck[r, c] != null && GameDeck[r, c].Team == (Teams)1 != White2move)
                 return;
@@ -418,7 +435,7 @@ namespace Chess
         }
         #endregion
         #region Игра по времени
-        void TimerSetup()
+        private void TimerSetup()
         {
             TimeSetter ts = new TimeSetter();
             ts.ShowDialog();
@@ -428,7 +445,8 @@ namespace Chess
             Increment = ts.Increment;
             TimeShow();
         }
-        void TimerAdd()
+
+        private void TimerAdd()
         {
             GameTimer.Stop();
             if (White2move)
@@ -438,10 +456,10 @@ namespace Chess
             GameTimer.Start();
         }
 
-        bool GameTime = false;
-        int WhiteT = 0;
-        int BlackT = 0;
-        int Increment = 0;
+        private bool GameTime = false;
+        private int WhiteT = 0;
+        private int BlackT = 0;
+        private int Increment = 0;
         private void Timer_Tick(object sender, EventArgs e)
         {
             if (!GameTime) return;
@@ -453,7 +471,8 @@ namespace Chess
             if (Playing)
                 EndCheck(White2move ? Teams.White : Teams.Black);
         }
-        string TimeFormat(int time)
+
+        private string TimeFormat(int time)
         {
             if (time < 0)
                 return "";

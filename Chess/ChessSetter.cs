@@ -19,7 +19,8 @@ namespace Chess
             Chosed = (Figura.Types)f;
             Close();
         }
-        void PutChess(Figura.Teams team)
+
+        private void PutChess(Figura.Teams team)
         {
             if (team == Figura.Teams.White)
             {
