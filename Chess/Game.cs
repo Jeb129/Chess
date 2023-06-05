@@ -108,7 +108,7 @@ namespace Chess
         /// </summary>
         /// <param name="row"></param>
         /// <param name="col"></param>
-        private void PaintChess(int row, int col)
+        void PaintChess(int row, int col)
         {
             Figura chess = GameDeck[row, col];
             if (chess == null)
@@ -244,7 +244,7 @@ namespace Chess
                 }
             return false;
         }
-        private List<int[]> CheckRemove(Figura select)
+        List<int[]> CheckRemove(Figura select)
         {
             List<int[]> moves = select.GetMoves(GameDeck, History[History.Count - 1].Last);
             int c = 0;
@@ -272,7 +272,7 @@ namespace Chess
             }
             return moves;
         }
-        private void EndCheck(Teams team)
+        void EndCheck(Teams team)
         {
             bool NM = NoMoves(team);
             bool NEM = NotEnoughMaterial();
@@ -339,7 +339,7 @@ namespace Chess
                 }
             return Kpos;
         }
-        static Figura[,] DeckCopy(Figura[,] Old)
+        Figura[,] DeckCopy(Figura[,] Old)
         {
             Figura[,] New = new Figura[8, 8];
             for (int i = 0; i < 8; i++)
@@ -347,7 +347,7 @@ namespace Chess
                     New[i, j] = Old[i, j];
             return New;
         }
-        private void ChessSelect(int r, int c)
+        void ChessSelect(int r, int c)
         {
             if (GameDeck[r, c] != null && GameDeck[r, c].Team == (Teams)1 != White2move)
                 return;
@@ -373,12 +373,7 @@ namespace Chess
             HideMoves();
             if (SelectF!=null &&(GameDeck[r, c] == null || GameDeck[r, c] != null && GameDeck[r, c].Team != SelectF.Team))
             {
-                //Проверяем, существует ли такой ход (Возможно стоит вынести)
-                bool Possible = false;
-                for (int i = 0; i < Smoves.Count && !Possible; i++)
-                    if (r == Smoves[i][0] && c == Smoves[i][1])
-                        Possible = true;
-                if (!Possible) return;
+                if (!IsPossible(c, r)) return;
 
                 Moving(GameDeck, SelectF, r, c);
                 EndCheck((Teams)(White2move ? 1 : 0));
@@ -386,6 +381,14 @@ namespace Chess
             }
             else
                 ChessSelect(r, c);
+        }
+        private bool IsPossible(int c, int r)
+        {
+            bool Possible = false;
+            for (int i = 0; i < Smoves.Count && !Possible; i++)
+                if (r == Smoves[i][0] && c == Smoves[i][1])
+                    Possible = true;
+            return Possible;
         }
         private void RestartClick(object sender, EventArgs e)
         {
