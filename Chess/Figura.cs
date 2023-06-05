@@ -196,6 +196,27 @@ namespace Chess
             }
             ClearEdge(Deck, moves);
         }
+        public override bool Equals(object obj)
+        {
+            return obj is Figura figura &&
+                   Type == figura.Type &&
+                   Team == figura.Team &&
+                   Fmove == figura.Fmove &&
+                   Row == figura.Row &&
+                   Col == figura.Col;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = 1359565429;
+            hashCode = hashCode * -1521134295 + Type.GetHashCode();
+            hashCode = hashCode * -1521134295 + Team.GetHashCode();
+            hashCode = hashCode * -1521134295 + Fmove.GetHashCode();
+            hashCode = hashCode * -1521134295 + Row.GetHashCode();
+            hashCode = hashCode * -1521134295 + Col.GetHashCode();
+            return hashCode;
+        }
+
         public enum Types
         {
             Rook,
@@ -209,6 +230,15 @@ namespace Chess
         {
             Black,
             White
+        }
+        public static bool operator ==(Figura left, Figura right)
+        {
+            return EqualityComparer<Figura>.Default.Equals(left, right);
+        }
+
+        public static bool operator !=(Figura left, Figura right)
+        {
+            return !(left == right);
         }
     }
 }
