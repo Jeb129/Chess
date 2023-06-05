@@ -113,8 +113,8 @@
             this.HistoryBox = new System.Windows.Forms.ListBox();
             this.BlackTimer = new System.Windows.Forms.Label();
             this.RestartButton = new System.Windows.Forms.Button();
+            this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.WhiteTimer = new System.Windows.Forms.Label();
-            this.Timer = new System.Windows.Forms.Timer(this.components);
             this.Deck.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,10 +124,10 @@
             this.a8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.a8.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.a8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.a8.Location = new System.Drawing.Point(15, 15);
-            this.a8.Margin = new System.Windows.Forms.Padding(2);
+            this.a8.Location = new System.Drawing.Point(20, 18);
+            this.a8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.a8.Name = "a8";
-            this.a8.Size = new System.Drawing.Size(55, 55);
+            this.a8.Size = new System.Drawing.Size(73, 68);
             this.a8.TabIndex = 0;
             this.a8.Tag = "W";
             this.a8.UseVisualStyleBackColor = false;
@@ -139,10 +139,10 @@
             this.b8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.b8.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.b8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.b8.Location = new System.Drawing.Point(70, 15);
-            this.b8.Margin = new System.Windows.Forms.Padding(2);
+            this.b8.Location = new System.Drawing.Point(93, 18);
+            this.b8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.b8.Name = "b8";
-            this.b8.Size = new System.Drawing.Size(55, 55);
+            this.b8.Size = new System.Drawing.Size(73, 68);
             this.b8.TabIndex = 1;
             this.b8.Tag = "B";
             this.b8.UseVisualStyleBackColor = false;
@@ -154,10 +154,10 @@
             this.c8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.c8.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.c8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.c8.Location = new System.Drawing.Point(125, 15);
-            this.c8.Margin = new System.Windows.Forms.Padding(2);
+            this.c8.Location = new System.Drawing.Point(167, 18);
+            this.c8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.c8.Name = "c8";
-            this.c8.Size = new System.Drawing.Size(55, 55);
+            this.c8.Size = new System.Drawing.Size(73, 68);
             this.c8.TabIndex = 2;
             this.c8.Tag = "W";
             this.c8.UseVisualStyleBackColor = false;
@@ -169,10 +169,10 @@
             this.d8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.d8.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.d8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.d8.Location = new System.Drawing.Point(180, 15);
-            this.d8.Margin = new System.Windows.Forms.Padding(2);
+            this.d8.Location = new System.Drawing.Point(240, 18);
+            this.d8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.d8.Name = "d8";
-            this.d8.Size = new System.Drawing.Size(55, 55);
+            this.d8.Size = new System.Drawing.Size(73, 68);
             this.d8.TabIndex = 3;
             this.d8.Tag = "B";
             this.d8.UseVisualStyleBackColor = false;
@@ -184,10 +184,10 @@
             this.h8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.h8.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.h8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.h8.Location = new System.Drawing.Point(400, 15);
-            this.h8.Margin = new System.Windows.Forms.Padding(2);
+            this.h8.Location = new System.Drawing.Point(533, 18);
+            this.h8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.h8.Name = "h8";
-            this.h8.Size = new System.Drawing.Size(55, 55);
+            this.h8.Size = new System.Drawing.Size(73, 68);
             this.h8.TabIndex = 7;
             this.h8.Tag = "B";
             this.h8.UseVisualStyleBackColor = false;
@@ -199,10 +199,10 @@
             this.g8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.g8.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.g8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.g8.Location = new System.Drawing.Point(345, 15);
-            this.g8.Margin = new System.Windows.Forms.Padding(2);
+            this.g8.Location = new System.Drawing.Point(460, 18);
+            this.g8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.g8.Name = "g8";
-            this.g8.Size = new System.Drawing.Size(55, 55);
+            this.g8.Size = new System.Drawing.Size(73, 68);
             this.g8.TabIndex = 6;
             this.g8.Tag = "W";
             this.g8.UseVisualStyleBackColor = false;
@@ -214,10 +214,10 @@
             this.f8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.f8.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.f8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.f8.Location = new System.Drawing.Point(290, 15);
-            this.f8.Margin = new System.Windows.Forms.Padding(2);
+            this.f8.Location = new System.Drawing.Point(387, 18);
+            this.f8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.f8.Name = "f8";
-            this.f8.Size = new System.Drawing.Size(55, 55);
+            this.f8.Size = new System.Drawing.Size(73, 68);
             this.f8.TabIndex = 5;
             this.f8.Tag = "B";
             this.f8.UseVisualStyleBackColor = false;
@@ -229,10 +229,10 @@
             this.e8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.e8.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.e8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.e8.Location = new System.Drawing.Point(235, 15);
-            this.e8.Margin = new System.Windows.Forms.Padding(2);
+            this.e8.Location = new System.Drawing.Point(313, 18);
+            this.e8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.e8.Name = "e8";
-            this.e8.Size = new System.Drawing.Size(55, 55);
+            this.e8.Size = new System.Drawing.Size(73, 68);
             this.e8.TabIndex = 4;
             this.e8.Tag = "W";
             this.e8.UseVisualStyleBackColor = false;
@@ -244,10 +244,10 @@
             this.h7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.h7.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.h7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.h7.Location = new System.Drawing.Point(400, 70);
-            this.h7.Margin = new System.Windows.Forms.Padding(2);
+            this.h7.Location = new System.Drawing.Point(533, 86);
+            this.h7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.h7.Name = "h7";
-            this.h7.Size = new System.Drawing.Size(55, 55);
+            this.h7.Size = new System.Drawing.Size(73, 68);
             this.h7.TabIndex = 15;
             this.h7.Tag = "W";
             this.h7.UseVisualStyleBackColor = false;
@@ -259,10 +259,10 @@
             this.g7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.g7.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.g7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.g7.Location = new System.Drawing.Point(345, 70);
-            this.g7.Margin = new System.Windows.Forms.Padding(2);
+            this.g7.Location = new System.Drawing.Point(460, 86);
+            this.g7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.g7.Name = "g7";
-            this.g7.Size = new System.Drawing.Size(55, 55);
+            this.g7.Size = new System.Drawing.Size(73, 68);
             this.g7.TabIndex = 14;
             this.g7.Tag = "B";
             this.g7.UseVisualStyleBackColor = false;
@@ -274,10 +274,10 @@
             this.f7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.f7.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.f7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.f7.Location = new System.Drawing.Point(290, 70);
-            this.f7.Margin = new System.Windows.Forms.Padding(2);
+            this.f7.Location = new System.Drawing.Point(387, 86);
+            this.f7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.f7.Name = "f7";
-            this.f7.Size = new System.Drawing.Size(55, 55);
+            this.f7.Size = new System.Drawing.Size(73, 68);
             this.f7.TabIndex = 13;
             this.f7.Tag = "W";
             this.f7.UseVisualStyleBackColor = false;
@@ -289,10 +289,10 @@
             this.e7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.e7.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.e7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.e7.Location = new System.Drawing.Point(235, 70);
-            this.e7.Margin = new System.Windows.Forms.Padding(2);
+            this.e7.Location = new System.Drawing.Point(313, 86);
+            this.e7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.e7.Name = "e7";
-            this.e7.Size = new System.Drawing.Size(55, 55);
+            this.e7.Size = new System.Drawing.Size(73, 68);
             this.e7.TabIndex = 12;
             this.e7.Tag = "B";
             this.e7.UseVisualStyleBackColor = false;
@@ -304,10 +304,10 @@
             this.d7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.d7.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.d7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.d7.Location = new System.Drawing.Point(180, 70);
-            this.d7.Margin = new System.Windows.Forms.Padding(2);
+            this.d7.Location = new System.Drawing.Point(240, 86);
+            this.d7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.d7.Name = "d7";
-            this.d7.Size = new System.Drawing.Size(55, 55);
+            this.d7.Size = new System.Drawing.Size(73, 68);
             this.d7.TabIndex = 11;
             this.d7.Tag = "W";
             this.d7.UseVisualStyleBackColor = false;
@@ -319,10 +319,10 @@
             this.c7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.c7.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.c7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.c7.Location = new System.Drawing.Point(125, 70);
-            this.c7.Margin = new System.Windows.Forms.Padding(2);
+            this.c7.Location = new System.Drawing.Point(167, 86);
+            this.c7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.c7.Name = "c7";
-            this.c7.Size = new System.Drawing.Size(55, 55);
+            this.c7.Size = new System.Drawing.Size(73, 68);
             this.c7.TabIndex = 10;
             this.c7.Tag = "B";
             this.c7.UseVisualStyleBackColor = false;
@@ -334,10 +334,10 @@
             this.b7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.b7.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.b7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.b7.Location = new System.Drawing.Point(70, 70);
-            this.b7.Margin = new System.Windows.Forms.Padding(2);
+            this.b7.Location = new System.Drawing.Point(93, 86);
+            this.b7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.b7.Name = "b7";
-            this.b7.Size = new System.Drawing.Size(55, 55);
+            this.b7.Size = new System.Drawing.Size(73, 68);
             this.b7.TabIndex = 9;
             this.b7.Tag = "W";
             this.b7.UseVisualStyleBackColor = false;
@@ -349,10 +349,10 @@
             this.a7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.a7.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.a7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.a7.Location = new System.Drawing.Point(15, 70);
-            this.a7.Margin = new System.Windows.Forms.Padding(2);
+            this.a7.Location = new System.Drawing.Point(20, 86);
+            this.a7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.a7.Name = "a7";
-            this.a7.Size = new System.Drawing.Size(55, 55);
+            this.a7.Size = new System.Drawing.Size(73, 68);
             this.a7.TabIndex = 8;
             this.a7.Tag = "B";
             this.a7.UseVisualStyleBackColor = false;
@@ -364,10 +364,10 @@
             this.h6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.h6.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.h6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.h6.Location = new System.Drawing.Point(400, 125);
-            this.h6.Margin = new System.Windows.Forms.Padding(2);
+            this.h6.Location = new System.Drawing.Point(533, 154);
+            this.h6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.h6.Name = "h6";
-            this.h6.Size = new System.Drawing.Size(55, 55);
+            this.h6.Size = new System.Drawing.Size(73, 68);
             this.h6.TabIndex = 23;
             this.h6.Tag = "B";
             this.h6.UseVisualStyleBackColor = false;
@@ -379,10 +379,10 @@
             this.g6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.g6.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.g6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.g6.Location = new System.Drawing.Point(345, 125);
-            this.g6.Margin = new System.Windows.Forms.Padding(2);
+            this.g6.Location = new System.Drawing.Point(460, 154);
+            this.g6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.g6.Name = "g6";
-            this.g6.Size = new System.Drawing.Size(55, 55);
+            this.g6.Size = new System.Drawing.Size(73, 68);
             this.g6.TabIndex = 22;
             this.g6.Tag = "W";
             this.g6.UseVisualStyleBackColor = false;
@@ -394,10 +394,10 @@
             this.f6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.f6.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.f6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.f6.Location = new System.Drawing.Point(290, 125);
-            this.f6.Margin = new System.Windows.Forms.Padding(2);
+            this.f6.Location = new System.Drawing.Point(387, 154);
+            this.f6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.f6.Name = "f6";
-            this.f6.Size = new System.Drawing.Size(55, 55);
+            this.f6.Size = new System.Drawing.Size(73, 68);
             this.f6.TabIndex = 21;
             this.f6.Tag = "B";
             this.f6.UseVisualStyleBackColor = false;
@@ -409,10 +409,10 @@
             this.e6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.e6.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.e6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.e6.Location = new System.Drawing.Point(235, 125);
-            this.e6.Margin = new System.Windows.Forms.Padding(2);
+            this.e6.Location = new System.Drawing.Point(313, 154);
+            this.e6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.e6.Name = "e6";
-            this.e6.Size = new System.Drawing.Size(55, 55);
+            this.e6.Size = new System.Drawing.Size(73, 68);
             this.e6.TabIndex = 20;
             this.e6.Tag = "W";
             this.e6.UseVisualStyleBackColor = false;
@@ -424,10 +424,10 @@
             this.d6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.d6.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.d6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.d6.Location = new System.Drawing.Point(180, 125);
-            this.d6.Margin = new System.Windows.Forms.Padding(2);
+            this.d6.Location = new System.Drawing.Point(240, 154);
+            this.d6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.d6.Name = "d6";
-            this.d6.Size = new System.Drawing.Size(55, 55);
+            this.d6.Size = new System.Drawing.Size(73, 68);
             this.d6.TabIndex = 19;
             this.d6.Tag = "B";
             this.d6.UseVisualStyleBackColor = false;
@@ -439,10 +439,10 @@
             this.c6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.c6.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.c6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.c6.Location = new System.Drawing.Point(125, 125);
-            this.c6.Margin = new System.Windows.Forms.Padding(2);
+            this.c6.Location = new System.Drawing.Point(167, 154);
+            this.c6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.c6.Name = "c6";
-            this.c6.Size = new System.Drawing.Size(55, 55);
+            this.c6.Size = new System.Drawing.Size(73, 68);
             this.c6.TabIndex = 18;
             this.c6.Tag = "W";
             this.c6.UseVisualStyleBackColor = false;
@@ -454,10 +454,10 @@
             this.b6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.b6.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.b6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.b6.Location = new System.Drawing.Point(70, 125);
-            this.b6.Margin = new System.Windows.Forms.Padding(2);
+            this.b6.Location = new System.Drawing.Point(93, 154);
+            this.b6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.b6.Name = "b6";
-            this.b6.Size = new System.Drawing.Size(55, 55);
+            this.b6.Size = new System.Drawing.Size(73, 68);
             this.b6.TabIndex = 17;
             this.b6.Tag = "B";
             this.b6.UseVisualStyleBackColor = false;
@@ -469,10 +469,10 @@
             this.a6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.a6.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.a6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.a6.Location = new System.Drawing.Point(15, 125);
-            this.a6.Margin = new System.Windows.Forms.Padding(2);
+            this.a6.Location = new System.Drawing.Point(20, 154);
+            this.a6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.a6.Name = "a6";
-            this.a6.Size = new System.Drawing.Size(55, 55);
+            this.a6.Size = new System.Drawing.Size(73, 68);
             this.a6.TabIndex = 16;
             this.a6.Tag = "W";
             this.a6.UseVisualStyleBackColor = false;
@@ -484,10 +484,10 @@
             this.h5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.h5.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.h5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.h5.Location = new System.Drawing.Point(400, 180);
-            this.h5.Margin = new System.Windows.Forms.Padding(2);
+            this.h5.Location = new System.Drawing.Point(533, 222);
+            this.h5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.h5.Name = "h5";
-            this.h5.Size = new System.Drawing.Size(55, 55);
+            this.h5.Size = new System.Drawing.Size(73, 68);
             this.h5.TabIndex = 31;
             this.h5.Tag = "W";
             this.h5.UseVisualStyleBackColor = false;
@@ -499,10 +499,10 @@
             this.g5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.g5.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.g5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.g5.Location = new System.Drawing.Point(345, 180);
-            this.g5.Margin = new System.Windows.Forms.Padding(2);
+            this.g5.Location = new System.Drawing.Point(460, 222);
+            this.g5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.g5.Name = "g5";
-            this.g5.Size = new System.Drawing.Size(55, 55);
+            this.g5.Size = new System.Drawing.Size(73, 68);
             this.g5.TabIndex = 30;
             this.g5.Tag = "B";
             this.g5.UseVisualStyleBackColor = false;
@@ -514,10 +514,10 @@
             this.f5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.f5.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.f5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.f5.Location = new System.Drawing.Point(290, 180);
-            this.f5.Margin = new System.Windows.Forms.Padding(2);
+            this.f5.Location = new System.Drawing.Point(387, 222);
+            this.f5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.f5.Name = "f5";
-            this.f5.Size = new System.Drawing.Size(55, 55);
+            this.f5.Size = new System.Drawing.Size(73, 68);
             this.f5.TabIndex = 29;
             this.f5.Tag = "W";
             this.f5.UseVisualStyleBackColor = false;
@@ -529,10 +529,10 @@
             this.e5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.e5.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.e5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.e5.Location = new System.Drawing.Point(235, 180);
-            this.e5.Margin = new System.Windows.Forms.Padding(2);
+            this.e5.Location = new System.Drawing.Point(313, 222);
+            this.e5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.e5.Name = "e5";
-            this.e5.Size = new System.Drawing.Size(55, 55);
+            this.e5.Size = new System.Drawing.Size(73, 68);
             this.e5.TabIndex = 28;
             this.e5.Tag = "B";
             this.e5.UseVisualStyleBackColor = false;
@@ -544,10 +544,10 @@
             this.d5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.d5.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.d5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.d5.Location = new System.Drawing.Point(180, 180);
-            this.d5.Margin = new System.Windows.Forms.Padding(2);
+            this.d5.Location = new System.Drawing.Point(240, 222);
+            this.d5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.d5.Name = "d5";
-            this.d5.Size = new System.Drawing.Size(55, 55);
+            this.d5.Size = new System.Drawing.Size(73, 68);
             this.d5.TabIndex = 27;
             this.d5.Tag = "W";
             this.d5.UseVisualStyleBackColor = false;
@@ -559,10 +559,10 @@
             this.c5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.c5.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.c5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.c5.Location = new System.Drawing.Point(125, 180);
-            this.c5.Margin = new System.Windows.Forms.Padding(2);
+            this.c5.Location = new System.Drawing.Point(167, 222);
+            this.c5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.c5.Name = "c5";
-            this.c5.Size = new System.Drawing.Size(55, 55);
+            this.c5.Size = new System.Drawing.Size(73, 68);
             this.c5.TabIndex = 26;
             this.c5.Tag = "B";
             this.c5.UseVisualStyleBackColor = false;
@@ -574,10 +574,10 @@
             this.b5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.b5.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.b5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.b5.Location = new System.Drawing.Point(70, 180);
-            this.b5.Margin = new System.Windows.Forms.Padding(2);
+            this.b5.Location = new System.Drawing.Point(93, 222);
+            this.b5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.b5.Name = "b5";
-            this.b5.Size = new System.Drawing.Size(55, 55);
+            this.b5.Size = new System.Drawing.Size(73, 68);
             this.b5.TabIndex = 25;
             this.b5.Tag = "W";
             this.b5.UseVisualStyleBackColor = false;
@@ -589,10 +589,10 @@
             this.a5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.a5.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.a5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.a5.Location = new System.Drawing.Point(15, 180);
-            this.a5.Margin = new System.Windows.Forms.Padding(2);
+            this.a5.Location = new System.Drawing.Point(20, 222);
+            this.a5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.a5.Name = "a5";
-            this.a5.Size = new System.Drawing.Size(55, 55);
+            this.a5.Size = new System.Drawing.Size(73, 68);
             this.a5.TabIndex = 24;
             this.a5.Tag = "B";
             this.a5.UseVisualStyleBackColor = false;
@@ -604,10 +604,10 @@
             this.h1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.h1.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.h1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.h1.Location = new System.Drawing.Point(400, 400);
-            this.h1.Margin = new System.Windows.Forms.Padding(2);
+            this.h1.Location = new System.Drawing.Point(533, 492);
+            this.h1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.h1.Name = "h1";
-            this.h1.Size = new System.Drawing.Size(55, 55);
+            this.h1.Size = new System.Drawing.Size(73, 68);
             this.h1.TabIndex = 63;
             this.h1.Tag = "W";
             this.h1.UseVisualStyleBackColor = false;
@@ -619,10 +619,10 @@
             this.g1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.g1.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.g1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.g1.Location = new System.Drawing.Point(345, 400);
-            this.g1.Margin = new System.Windows.Forms.Padding(2);
+            this.g1.Location = new System.Drawing.Point(460, 492);
+            this.g1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.g1.Name = "g1";
-            this.g1.Size = new System.Drawing.Size(55, 55);
+            this.g1.Size = new System.Drawing.Size(73, 68);
             this.g1.TabIndex = 62;
             this.g1.Tag = "B";
             this.g1.UseVisualStyleBackColor = false;
@@ -634,10 +634,10 @@
             this.f1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.f1.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.f1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.f1.Location = new System.Drawing.Point(290, 400);
-            this.f1.Margin = new System.Windows.Forms.Padding(2);
+            this.f1.Location = new System.Drawing.Point(387, 492);
+            this.f1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.f1.Name = "f1";
-            this.f1.Size = new System.Drawing.Size(55, 55);
+            this.f1.Size = new System.Drawing.Size(73, 68);
             this.f1.TabIndex = 61;
             this.f1.Tag = "W";
             this.f1.UseVisualStyleBackColor = false;
@@ -649,10 +649,10 @@
             this.e1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.e1.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.e1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.e1.Location = new System.Drawing.Point(235, 400);
-            this.e1.Margin = new System.Windows.Forms.Padding(2);
+            this.e1.Location = new System.Drawing.Point(313, 492);
+            this.e1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.e1.Name = "e1";
-            this.e1.Size = new System.Drawing.Size(55, 55);
+            this.e1.Size = new System.Drawing.Size(73, 68);
             this.e1.TabIndex = 60;
             this.e1.Tag = "B";
             this.e1.UseVisualStyleBackColor = false;
@@ -664,10 +664,10 @@
             this.d1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.d1.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.d1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.d1.Location = new System.Drawing.Point(180, 400);
-            this.d1.Margin = new System.Windows.Forms.Padding(2);
+            this.d1.Location = new System.Drawing.Point(240, 492);
+            this.d1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.d1.Name = "d1";
-            this.d1.Size = new System.Drawing.Size(55, 55);
+            this.d1.Size = new System.Drawing.Size(73, 68);
             this.d1.TabIndex = 59;
             this.d1.Tag = "W";
             this.d1.UseVisualStyleBackColor = false;
@@ -679,10 +679,10 @@
             this.c1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.c1.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.c1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.c1.Location = new System.Drawing.Point(125, 400);
-            this.c1.Margin = new System.Windows.Forms.Padding(2);
+            this.c1.Location = new System.Drawing.Point(167, 492);
+            this.c1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.c1.Name = "c1";
-            this.c1.Size = new System.Drawing.Size(55, 55);
+            this.c1.Size = new System.Drawing.Size(73, 68);
             this.c1.TabIndex = 58;
             this.c1.Tag = "B";
             this.c1.UseVisualStyleBackColor = false;
@@ -694,10 +694,10 @@
             this.b1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.b1.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.b1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.b1.Location = new System.Drawing.Point(70, 400);
-            this.b1.Margin = new System.Windows.Forms.Padding(2);
+            this.b1.Location = new System.Drawing.Point(93, 492);
+            this.b1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.b1.Name = "b1";
-            this.b1.Size = new System.Drawing.Size(55, 55);
+            this.b1.Size = new System.Drawing.Size(73, 68);
             this.b1.TabIndex = 57;
             this.b1.Tag = "W";
             this.b1.UseVisualStyleBackColor = false;
@@ -709,10 +709,10 @@
             this.a1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.a1.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.a1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.a1.Location = new System.Drawing.Point(15, 400);
-            this.a1.Margin = new System.Windows.Forms.Padding(2);
+            this.a1.Location = new System.Drawing.Point(20, 492);
+            this.a1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.a1.Name = "a1";
-            this.a1.Size = new System.Drawing.Size(55, 55);
+            this.a1.Size = new System.Drawing.Size(73, 68);
             this.a1.TabIndex = 56;
             this.a1.Tag = "B";
             this.a1.UseVisualStyleBackColor = false;
@@ -724,10 +724,10 @@
             this.h2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.h2.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.h2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.h2.Location = new System.Drawing.Point(400, 345);
-            this.h2.Margin = new System.Windows.Forms.Padding(2);
+            this.h2.Location = new System.Drawing.Point(533, 425);
+            this.h2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.h2.Name = "h2";
-            this.h2.Size = new System.Drawing.Size(55, 55);
+            this.h2.Size = new System.Drawing.Size(73, 68);
             this.h2.TabIndex = 55;
             this.h2.Tag = "B";
             this.h2.UseVisualStyleBackColor = false;
@@ -739,10 +739,10 @@
             this.g2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.g2.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.g2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.g2.Location = new System.Drawing.Point(345, 345);
-            this.g2.Margin = new System.Windows.Forms.Padding(2);
+            this.g2.Location = new System.Drawing.Point(460, 425);
+            this.g2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.g2.Name = "g2";
-            this.g2.Size = new System.Drawing.Size(55, 55);
+            this.g2.Size = new System.Drawing.Size(73, 68);
             this.g2.TabIndex = 54;
             this.g2.Tag = "W";
             this.g2.UseVisualStyleBackColor = false;
@@ -754,10 +754,10 @@
             this.f2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.f2.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.f2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.f2.Location = new System.Drawing.Point(290, 345);
-            this.f2.Margin = new System.Windows.Forms.Padding(2);
+            this.f2.Location = new System.Drawing.Point(387, 425);
+            this.f2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.f2.Name = "f2";
-            this.f2.Size = new System.Drawing.Size(55, 55);
+            this.f2.Size = new System.Drawing.Size(73, 68);
             this.f2.TabIndex = 53;
             this.f2.Tag = "B";
             this.f2.UseVisualStyleBackColor = false;
@@ -769,10 +769,10 @@
             this.e2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.e2.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.e2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.e2.Location = new System.Drawing.Point(235, 345);
-            this.e2.Margin = new System.Windows.Forms.Padding(2);
+            this.e2.Location = new System.Drawing.Point(313, 425);
+            this.e2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.e2.Name = "e2";
-            this.e2.Size = new System.Drawing.Size(55, 55);
+            this.e2.Size = new System.Drawing.Size(73, 68);
             this.e2.TabIndex = 52;
             this.e2.Tag = "W";
             this.e2.UseVisualStyleBackColor = false;
@@ -784,10 +784,10 @@
             this.d2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.d2.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.d2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.d2.Location = new System.Drawing.Point(180, 345);
-            this.d2.Margin = new System.Windows.Forms.Padding(2);
+            this.d2.Location = new System.Drawing.Point(240, 425);
+            this.d2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.d2.Name = "d2";
-            this.d2.Size = new System.Drawing.Size(55, 55);
+            this.d2.Size = new System.Drawing.Size(73, 68);
             this.d2.TabIndex = 51;
             this.d2.Tag = "B";
             this.d2.UseVisualStyleBackColor = false;
@@ -799,10 +799,10 @@
             this.c2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.c2.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.c2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.c2.Location = new System.Drawing.Point(125, 345);
-            this.c2.Margin = new System.Windows.Forms.Padding(2);
+            this.c2.Location = new System.Drawing.Point(167, 425);
+            this.c2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.c2.Name = "c2";
-            this.c2.Size = new System.Drawing.Size(55, 55);
+            this.c2.Size = new System.Drawing.Size(73, 68);
             this.c2.TabIndex = 50;
             this.c2.Tag = "W";
             this.c2.UseVisualStyleBackColor = false;
@@ -814,10 +814,10 @@
             this.b2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.b2.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.b2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.b2.Location = new System.Drawing.Point(70, 345);
-            this.b2.Margin = new System.Windows.Forms.Padding(2);
+            this.b2.Location = new System.Drawing.Point(93, 425);
+            this.b2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.b2.Name = "b2";
-            this.b2.Size = new System.Drawing.Size(55, 55);
+            this.b2.Size = new System.Drawing.Size(73, 68);
             this.b2.TabIndex = 49;
             this.b2.Tag = "B";
             this.b2.UseVisualStyleBackColor = false;
@@ -829,10 +829,10 @@
             this.a2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.a2.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.a2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.a2.Location = new System.Drawing.Point(15, 345);
-            this.a2.Margin = new System.Windows.Forms.Padding(2);
+            this.a2.Location = new System.Drawing.Point(20, 425);
+            this.a2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.a2.Name = "a2";
-            this.a2.Size = new System.Drawing.Size(55, 55);
+            this.a2.Size = new System.Drawing.Size(73, 68);
             this.a2.TabIndex = 48;
             this.a2.Tag = "W";
             this.a2.UseVisualStyleBackColor = false;
@@ -844,10 +844,10 @@
             this.h3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.h3.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.h3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.h3.Location = new System.Drawing.Point(400, 290);
-            this.h3.Margin = new System.Windows.Forms.Padding(2);
+            this.h3.Location = new System.Drawing.Point(533, 357);
+            this.h3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.h3.Name = "h3";
-            this.h3.Size = new System.Drawing.Size(55, 55);
+            this.h3.Size = new System.Drawing.Size(73, 68);
             this.h3.TabIndex = 47;
             this.h3.Tag = "W";
             this.h3.UseVisualStyleBackColor = false;
@@ -859,10 +859,10 @@
             this.g3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.g3.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.g3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.g3.Location = new System.Drawing.Point(345, 290);
-            this.g3.Margin = new System.Windows.Forms.Padding(2);
+            this.g3.Location = new System.Drawing.Point(460, 357);
+            this.g3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.g3.Name = "g3";
-            this.g3.Size = new System.Drawing.Size(55, 55);
+            this.g3.Size = new System.Drawing.Size(73, 68);
             this.g3.TabIndex = 46;
             this.g3.Tag = "B";
             this.g3.UseVisualStyleBackColor = false;
@@ -874,10 +874,10 @@
             this.f3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.f3.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.f3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.f3.Location = new System.Drawing.Point(290, 290);
-            this.f3.Margin = new System.Windows.Forms.Padding(2);
+            this.f3.Location = new System.Drawing.Point(387, 357);
+            this.f3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.f3.Name = "f3";
-            this.f3.Size = new System.Drawing.Size(55, 55);
+            this.f3.Size = new System.Drawing.Size(73, 68);
             this.f3.TabIndex = 45;
             this.f3.Tag = "W";
             this.f3.UseVisualStyleBackColor = false;
@@ -889,10 +889,10 @@
             this.e3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.e3.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.e3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.e3.Location = new System.Drawing.Point(235, 290);
-            this.e3.Margin = new System.Windows.Forms.Padding(2);
+            this.e3.Location = new System.Drawing.Point(313, 357);
+            this.e3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.e3.Name = "e3";
-            this.e3.Size = new System.Drawing.Size(55, 55);
+            this.e3.Size = new System.Drawing.Size(73, 68);
             this.e3.TabIndex = 44;
             this.e3.Tag = "B";
             this.e3.UseVisualStyleBackColor = false;
@@ -904,10 +904,10 @@
             this.d3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.d3.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.d3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.d3.Location = new System.Drawing.Point(180, 290);
-            this.d3.Margin = new System.Windows.Forms.Padding(2);
+            this.d3.Location = new System.Drawing.Point(240, 357);
+            this.d3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.d3.Name = "d3";
-            this.d3.Size = new System.Drawing.Size(55, 55);
+            this.d3.Size = new System.Drawing.Size(73, 68);
             this.d3.TabIndex = 43;
             this.d3.Tag = "W";
             this.d3.UseVisualStyleBackColor = false;
@@ -919,10 +919,10 @@
             this.c3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.c3.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.c3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.c3.Location = new System.Drawing.Point(125, 290);
-            this.c3.Margin = new System.Windows.Forms.Padding(2);
+            this.c3.Location = new System.Drawing.Point(167, 357);
+            this.c3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.c3.Name = "c3";
-            this.c3.Size = new System.Drawing.Size(55, 55);
+            this.c3.Size = new System.Drawing.Size(73, 68);
             this.c3.TabIndex = 42;
             this.c3.Tag = "B";
             this.c3.UseVisualStyleBackColor = false;
@@ -934,10 +934,10 @@
             this.b3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.b3.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.b3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.b3.Location = new System.Drawing.Point(70, 290);
-            this.b3.Margin = new System.Windows.Forms.Padding(2);
+            this.b3.Location = new System.Drawing.Point(93, 357);
+            this.b3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.b3.Name = "b3";
-            this.b3.Size = new System.Drawing.Size(55, 55);
+            this.b3.Size = new System.Drawing.Size(73, 68);
             this.b3.TabIndex = 41;
             this.b3.Tag = "W";
             this.b3.UseVisualStyleBackColor = false;
@@ -949,10 +949,10 @@
             this.a3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.a3.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.a3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.a3.Location = new System.Drawing.Point(15, 290);
-            this.a3.Margin = new System.Windows.Forms.Padding(2);
+            this.a3.Location = new System.Drawing.Point(20, 357);
+            this.a3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.a3.Name = "a3";
-            this.a3.Size = new System.Drawing.Size(55, 55);
+            this.a3.Size = new System.Drawing.Size(73, 68);
             this.a3.TabIndex = 40;
             this.a3.Tag = "B";
             this.a3.UseVisualStyleBackColor = false;
@@ -964,10 +964,10 @@
             this.h4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.h4.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.h4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.h4.Location = new System.Drawing.Point(400, 235);
-            this.h4.Margin = new System.Windows.Forms.Padding(2);
+            this.h4.Location = new System.Drawing.Point(533, 289);
+            this.h4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.h4.Name = "h4";
-            this.h4.Size = new System.Drawing.Size(55, 55);
+            this.h4.Size = new System.Drawing.Size(73, 68);
             this.h4.TabIndex = 39;
             this.h4.Tag = "B";
             this.h4.UseVisualStyleBackColor = false;
@@ -979,10 +979,10 @@
             this.g4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.g4.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.g4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.g4.Location = new System.Drawing.Point(345, 235);
-            this.g4.Margin = new System.Windows.Forms.Padding(2);
+            this.g4.Location = new System.Drawing.Point(460, 289);
+            this.g4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.g4.Name = "g4";
-            this.g4.Size = new System.Drawing.Size(55, 55);
+            this.g4.Size = new System.Drawing.Size(73, 68);
             this.g4.TabIndex = 38;
             this.g4.Tag = "W";
             this.g4.UseVisualStyleBackColor = false;
@@ -994,10 +994,10 @@
             this.f4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.f4.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.f4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.f4.Location = new System.Drawing.Point(290, 235);
-            this.f4.Margin = new System.Windows.Forms.Padding(2);
+            this.f4.Location = new System.Drawing.Point(387, 289);
+            this.f4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.f4.Name = "f4";
-            this.f4.Size = new System.Drawing.Size(55, 55);
+            this.f4.Size = new System.Drawing.Size(73, 68);
             this.f4.TabIndex = 37;
             this.f4.Tag = "B";
             this.f4.UseVisualStyleBackColor = false;
@@ -1009,10 +1009,10 @@
             this.e4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.e4.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.e4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.e4.Location = new System.Drawing.Point(235, 235);
-            this.e4.Margin = new System.Windows.Forms.Padding(2);
+            this.e4.Location = new System.Drawing.Point(313, 289);
+            this.e4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.e4.Name = "e4";
-            this.e4.Size = new System.Drawing.Size(55, 55);
+            this.e4.Size = new System.Drawing.Size(73, 68);
             this.e4.TabIndex = 36;
             this.e4.Tag = "W";
             this.e4.UseVisualStyleBackColor = false;
@@ -1024,10 +1024,10 @@
             this.d4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.d4.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.d4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.d4.Location = new System.Drawing.Point(180, 235);
-            this.d4.Margin = new System.Windows.Forms.Padding(2);
+            this.d4.Location = new System.Drawing.Point(240, 289);
+            this.d4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.d4.Name = "d4";
-            this.d4.Size = new System.Drawing.Size(55, 55);
+            this.d4.Size = new System.Drawing.Size(73, 68);
             this.d4.TabIndex = 35;
             this.d4.Tag = "B";
             this.d4.UseVisualStyleBackColor = false;
@@ -1039,10 +1039,10 @@
             this.c4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.c4.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.c4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.c4.Location = new System.Drawing.Point(125, 235);
-            this.c4.Margin = new System.Windows.Forms.Padding(2);
+            this.c4.Location = new System.Drawing.Point(167, 289);
+            this.c4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.c4.Name = "c4";
-            this.c4.Size = new System.Drawing.Size(55, 55);
+            this.c4.Size = new System.Drawing.Size(73, 68);
             this.c4.TabIndex = 34;
             this.c4.Tag = "W";
             this.c4.UseVisualStyleBackColor = false;
@@ -1054,10 +1054,10 @@
             this.b4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.b4.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.b4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.b4.Location = new System.Drawing.Point(70, 235);
-            this.b4.Margin = new System.Windows.Forms.Padding(2);
+            this.b4.Location = new System.Drawing.Point(93, 289);
+            this.b4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.b4.Name = "b4";
-            this.b4.Size = new System.Drawing.Size(55, 55);
+            this.b4.Size = new System.Drawing.Size(73, 68);
             this.b4.TabIndex = 33;
             this.b4.Tag = "B";
             this.b4.UseVisualStyleBackColor = false;
@@ -1069,10 +1069,10 @@
             this.a4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.a4.FlatAppearance.BorderColor = System.Drawing.Color.Olive;
             this.a4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.a4.Location = new System.Drawing.Point(15, 235);
-            this.a4.Margin = new System.Windows.Forms.Padding(2);
+            this.a4.Location = new System.Drawing.Point(20, 289);
+            this.a4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.a4.Name = "a4";
-            this.a4.Size = new System.Drawing.Size(55, 55);
+            this.a4.Size = new System.Drawing.Size(73, 68);
             this.a4.TabIndex = 32;
             this.a4.Tag = "W";
             this.a4.UseVisualStyleBackColor = false;
@@ -1161,19 +1161,18 @@
             this.Deck.Controls.Add(this.b4);
             this.Deck.Controls.Add(this.h5);
             this.Deck.Controls.Add(this.a4);
-            this.Deck.Location = new System.Drawing.Point(30, 30);
-            this.Deck.Margin = new System.Windows.Forms.Padding(2);
+            this.Deck.Location = new System.Drawing.Point(40, 37);
+            this.Deck.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Deck.Name = "Deck";
-            this.Deck.Size = new System.Drawing.Size(470, 470);
+            this.Deck.Size = new System.Drawing.Size(627, 578);
             this.Deck.TabIndex = 64;
             // 
             // label16
             // 
             this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(0, 400);
-            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Location = new System.Drawing.Point(0, 492);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(15, 55);
+            this.label16.Size = new System.Drawing.Size(20, 68);
             this.label16.TabIndex = 79;
             this.label16.Text = "1";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1181,10 +1180,9 @@
             // label15
             // 
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(0, 345);
-            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Location = new System.Drawing.Point(0, 425);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(15, 55);
+            this.label15.Size = new System.Drawing.Size(20, 68);
             this.label15.TabIndex = 78;
             this.label15.Text = "2";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1192,10 +1190,9 @@
             // label14
             // 
             this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(0, 290);
-            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Location = new System.Drawing.Point(0, 357);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(15, 55);
+            this.label14.Size = new System.Drawing.Size(20, 68);
             this.label14.TabIndex = 77;
             this.label14.Text = "3";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1203,10 +1200,9 @@
             // label13
             // 
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(0, 235);
-            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Location = new System.Drawing.Point(0, 289);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(15, 55);
+            this.label13.Size = new System.Drawing.Size(20, 68);
             this.label13.TabIndex = 76;
             this.label13.Text = "4";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1214,10 +1210,9 @@
             // label12
             // 
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(0, 180);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Location = new System.Drawing.Point(0, 222);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(15, 55);
+            this.label12.Size = new System.Drawing.Size(20, 68);
             this.label12.TabIndex = 75;
             this.label12.Text = "5";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1225,10 +1220,9 @@
             // label11
             // 
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(0, 125);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Location = new System.Drawing.Point(0, 154);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(15, 55);
+            this.label11.Size = new System.Drawing.Size(20, 68);
             this.label11.TabIndex = 74;
             this.label11.Text = "6";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1236,10 +1230,9 @@
             // label10
             // 
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(0, 70);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Location = new System.Drawing.Point(0, 86);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(15, 55);
+            this.label10.Size = new System.Drawing.Size(20, 68);
             this.label10.TabIndex = 73;
             this.label10.Text = "7";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1247,10 +1240,9 @@
             // label9
             // 
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(0, 15);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(0, 18);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(15, 55);
+            this.label9.Size = new System.Drawing.Size(20, 68);
             this.label9.TabIndex = 72;
             this.label9.Text = "8";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1258,10 +1250,9 @@
             // label8
             // 
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(400, 455);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(533, 560);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(55, 15);
+            this.label8.Size = new System.Drawing.Size(73, 18);
             this.label8.TabIndex = 71;
             this.label8.Text = "h";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1269,10 +1260,9 @@
             // label7
             // 
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(345, 455);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(460, 560);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(55, 15);
+            this.label7.Size = new System.Drawing.Size(73, 18);
             this.label7.TabIndex = 70;
             this.label7.Text = "g";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1280,10 +1270,9 @@
             // label6
             // 
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(290, 455);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(387, 560);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 15);
+            this.label6.Size = new System.Drawing.Size(73, 18);
             this.label6.TabIndex = 69;
             this.label6.Text = "f";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1291,10 +1280,9 @@
             // label5
             // 
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(235, 455);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(313, 560);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 15);
+            this.label5.Size = new System.Drawing.Size(73, 18);
             this.label5.TabIndex = 68;
             this.label5.Text = "e";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1302,10 +1290,9 @@
             // label4
             // 
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(180, 455);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(240, 560);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 15);
+            this.label4.Size = new System.Drawing.Size(73, 18);
             this.label4.TabIndex = 67;
             this.label4.Text = "d";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1313,10 +1300,9 @@
             // label3
             // 
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(125, 455);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(167, 560);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 15);
+            this.label3.Size = new System.Drawing.Size(73, 18);
             this.label3.TabIndex = 66;
             this.label3.Text = "c";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1324,10 +1310,9 @@
             // label2
             // 
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(70, 455);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(93, 560);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 15);
+            this.label2.Size = new System.Drawing.Size(73, 18);
             this.label2.TabIndex = 65;
             this.label2.Text = "b";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1335,10 +1320,9 @@
             // label1
             // 
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(15, 455);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(20, 560);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 15);
+            this.label1.Size = new System.Drawing.Size(73, 18);
             this.label1.TabIndex = 64;
             this.label1.Text = "a";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1350,24 +1334,22 @@
             this.HistoryBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.HistoryBox.ForeColor = System.Drawing.Color.White;
             this.HistoryBox.FormattingEnabled = true;
-            this.HistoryBox.ItemHeight = 22;
-            this.HistoryBox.Location = new System.Drawing.Point(515, 88);
-            this.HistoryBox.Margin = new System.Windows.Forms.Padding(2);
+            this.HistoryBox.ItemHeight = 29;
+            this.HistoryBox.Location = new System.Drawing.Point(695, 108);
+            this.HistoryBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.HistoryBox.Name = "HistoryBox";
-            this.HistoryBox.Size = new System.Drawing.Size(150, 288);
+            this.HistoryBox.Size = new System.Drawing.Size(199, 350);
             this.HistoryBox.TabIndex = 66;
             // 
             // BlackTimer
             // 
             this.BlackTimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BlackTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BlackTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.BlackTimer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BlackTimer.Location = new System.Drawing.Point(515, 31);
-            this.BlackTimer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.BlackTimer.Location = new System.Drawing.Point(673, 37);
             this.BlackTimer.Name = "BlackTimer";
-            this.BlackTimer.Size = new System.Drawing.Size(150, 57);
+            this.BlackTimer.Size = new System.Drawing.Size(248, 70);
             this.BlackTimer.TabIndex = 67;
-            this.BlackTimer.Text = "000 : 00";
             this.BlackTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // RestartButton
@@ -1378,46 +1360,46 @@
             this.RestartButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RestartButton.Font = new System.Drawing.Font("Ravie", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RestartButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.RestartButton.Location = new System.Drawing.Point(515, 379);
-            this.RestartButton.Margin = new System.Windows.Forms.Padding(2);
+            this.RestartButton.Location = new System.Drawing.Point(695, 466);
+            this.RestartButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RestartButton.Name = "RestartButton";
-            this.RestartButton.Size = new System.Drawing.Size(150, 51);
+            this.RestartButton.Size = new System.Drawing.Size(200, 63);
             this.RestartButton.TabIndex = 68;
             this.RestartButton.Text = "Новая игра";
             this.RestartButton.UseVisualStyleBackColor = false;
             this.RestartButton.Click += new System.EventHandler(this.RestartClick);
             // 
+            // GameTimer
+            // 
+            this.GameTimer.Interval = 1000;
+            this.GameTimer.Tick += new System.EventHandler(this.Timer_Tick);
+            // 
             // WhiteTimer
             // 
             this.WhiteTimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.WhiteTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.WhiteTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.WhiteTimer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.WhiteTimer.Location = new System.Drawing.Point(515, 429);
-            this.WhiteTimer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.WhiteTimer.Location = new System.Drawing.Point(673, 529);
             this.WhiteTimer.Name = "WhiteTimer";
-            this.WhiteTimer.Size = new System.Drawing.Size(150, 57);
+            this.WhiteTimer.Size = new System.Drawing.Size(248, 70);
             this.WhiteTimer.TabIndex = 69;
-            this.WhiteTimer.Text = "000 : 00";
             this.WhiteTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Timer
-            // 
-            this.Timer.Interval = 1000;
-            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // Game
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGreen;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(695, 530);
+            this.ClientSize = new System.Drawing.Size(927, 650);
             this.Controls.Add(this.WhiteTimer);
             this.Controls.Add(this.RestartButton);
             this.Controls.Add(this.BlackTimer);
             this.Controls.Add(this.HistoryBox);
             this.Controls.Add(this.Deck);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximumSize = new System.Drawing.Size(945, 697);
+            this.MinimumSize = new System.Drawing.Size(945, 697);
             this.Name = "Game";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Game";
@@ -1513,7 +1495,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label BlackTimer;
         private System.Windows.Forms.Button RestartButton;
+        private System.Windows.Forms.Timer GameTimer;
         private System.Windows.Forms.Label WhiteTimer;
-        private System.Windows.Forms.Timer Timer;
     }
 }

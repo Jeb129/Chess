@@ -87,6 +87,7 @@ namespace Chess
                 Move move = new Move(++MoveCount, select.Team, select.Type, new int[] { select.Row, select.Col }, new int[] { r, c });
                 HistoryBox.Items.Add(move);
                 History.Add(new DeckHistory(move, DeckCopy(GameDeck)));
+                TimerAdd();
                 White2move = !White2move;
                 Deck[r,c].Fmove = false;
             }
@@ -133,43 +134,36 @@ namespace Chess
         }
         void EndCheck(Teams team)
         {
-            if (NotEnoughMaterial() || ThreeRepeats() || DrawCount >= 50)
+            if (NotEnoughMaterial(Teams.White) && NotEnoughMaterial(Teams.Black) || 
+                ThreeRepeats() || DrawCount >= 50)
             {
-                MessageBox.Show("Ничья");
+                GameTime = false;
                 Playing = false;
+                MessageBox.Show("Ничья");
             }
             if (NoMoves(team))
             {
-                MessageBox.Show(Check ? "Шах и мат. Победа " + (White2move ? "чёрных":"белых") : "Пат");
+                GameTime = false;
                 Playing = false;
+                MessageBox.Show(Check ? "Шах и мат. Победа " + (White2move ? "чёрных":"белых") : "Пат");
+            }
+            if (WhiteT <= 0)
+            {
+                string win = NotEnoughMaterial(Teams.Black) ? "Ничья" : "Победа чёрных";
+                GameTime = false;
+                Playing = false;
+                MessageBox.Show("Время белых истекло. "+ win);
+            }
+            if (BlackT <= 0)
+            {
+                string win = NotEnoughMaterial(Teams.White) ? "Ничья" : "Победа Белых";
+                GameTime = false;
+                Playing = false;
+                MessageBox.Show("Время чёрных истекло. "+ win);
             }
         }
         #endregion
         #region Графика
-        /// <summary>
-        /// Стандартная расстановка фигур
-        /// </summary>
-        void StartDeck()
-        {
-            //Ставим пешки
-            for (int i = 0; i < 8; i++)
-            {
-                PutChess(GameDeck, Types.Pawn, Teams.White, 1, i);
-                PutChess(GameDeck, Types.Pawn, Teams.Black, 6, i);
-            }
-            //Ставим фигуры слева от короля и короля
-            for (int i = 0; i < 5; i++)
-            {
-                PutChess(GameDeck, (Types)i, Teams.White, 0, i);
-                PutChess(GameDeck, (Types)i, Teams.Black, 7, i);
-            }
-            //Фигуры справа
-            for (int i = 0; i < 4; i++)
-            {
-                PutChess(GameDeck, (Types)(3 - i), Teams.White, 0, i + 4);
-                PutChess(GameDeck, (Types)(3 - i), Teams.Black, 7, i + 4);
-            }
-        }
         void PutChess(Figura[,] Deck, Types type, Teams team, int row, int col, bool Paint = true)
         {
             Figura chess = new Figura(type, team, row, col);
@@ -263,12 +257,10 @@ namespace Chess
             int[] kpos = KingFind(GameDeck, (White2move ? Teams.White : Teams.Black));
             ButtonDeck[kpos[0], kpos[1]].BackColor = Color.Red;
         }
-        void ClearDeck()
+        void TimeShow()
         {
-            for (int i = 0; i < 8; i++)
-                for (int j = 0; j < 8; j++)
-                    DelChess(GameDeck, i, j);
-            HideMoves();
+            WhiteTimer.Text = TimeFormat(WhiteT);
+            BlackTimer.Text = TimeFormat(BlackT);
         }
         #endregion
         #region Проверка состояния доски
@@ -290,11 +282,11 @@ namespace Chess
                 }
             return mC==0;
         }
-        bool NotEnoughMaterial()
+        bool NotEnoughMaterial(Teams team)
         {
             List<Figura> f = new List<Figura>();
             foreach (Figura Ch in GameDeck)
-                if (Ch != null && Ch.Type != Types.King)
+                if (Ch != null && Ch.Type != Types.King && Ch.Team == team)
                     f.Add(Ch);
             return f.Count == 0 || f.Count == 1 && (f[0].Type == Types.Knight || f[0].Type == Types.Bishop);
         }
@@ -329,6 +321,34 @@ namespace Chess
                     New[i, j] = Old[i, j];
             return New;
         }
+        void ClearDeck()
+        {
+            for (int i = 0; i < 8; i++)
+                for (int j = 0; j < 8; j++)
+                    DelChess(GameDeck, i, j);
+            HideMoves();
+        }
+        void StartDeck()
+        {
+            //Ставим пешки
+            for (int i = 0; i < 8; i++)
+            {
+                PutChess(GameDeck, Types.Pawn, Teams.White, 1, i);
+                PutChess(GameDeck, Types.Pawn, Teams.Black, 6, i);
+            }
+            //Ставим фигуры слева от короля и короля
+            for (int i = 0; i < 5; i++)
+            {
+                PutChess(GameDeck, (Types)i, Teams.White, 0, i);
+                PutChess(GameDeck, (Types)i, Teams.Black, 7, i);
+            }
+            //Фигуры справа
+            for (int i = 0; i < 4; i++)
+            {
+                PutChess(GameDeck, (Types)(3 - i), Teams.White, 0, i + 4);
+                PutChess(GameDeck, (Types)(3 - i), Teams.Black, 7, i + 4);
+            }
+        }
         #endregion
         #region Обработчики
         private void Pole_Click(object sender, EventArgs e)
@@ -357,6 +377,7 @@ namespace Chess
             else
                 ChessSelect(r, c);
             CheckShow();
+            TimeShow();
         }
         bool IsPossible(int c, int r)
         {
@@ -370,20 +391,33 @@ namespace Chess
         {
             if (GameDeck[r, c] != null && GameDeck[r, c].Team == (Teams)1 != White2move)
                 return;
+            if (!GameTime && WhiteT > 0)
+            {
+                GameTime = true;
+                GameTimer.Start();
+            }
             SelectF = GameDeck[r, c];
             Smoves = CheckRemove(SelectF);
             ShowMoves();
         }
         private void RestartClick(object sender, EventArgs e)
         {
-            ClearDeck();
-            StartDeck();
             SelectF = null;
             White2move = true;
             Playing = true;
+            GameTime = false;
+            WhiteT = 0;
+            BlackT = 0;
+            Increment = 0;
             MoveCount = 0;
+            WhiteTimer.Text = "";
+            BlackTimer.Text = "";
             HistoryBox.Items.Clear();
             History = new List<DeckHistory>() { new DeckHistory(null, DeckCopy(GameDeck)) };
+
+            TimerSetup();
+            ClearDeck();
+            StartDeck();
         }
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -391,14 +425,55 @@ namespace Chess
         }
         #endregion
         #region Игра по времени
-        int White = 0;
-        int Black = 0;
+        void TimerSetup()
+        {
+            TimeSetter ts = new TimeSetter();
+            ts.ShowDialog();
+            if (ts.Timer <= 0) return;
+            WhiteT = ts.Timer;
+            BlackT = WhiteT;
+            Increment = ts.Increment;
+            TimeShow();
+        }
+        void TimerAdd()
+        {
+            GameTimer.Stop();
+            if (White2move)
+                WhiteT += Increment;
+            else
+                BlackT += Increment;
+            GameTimer.Start();
+        }
+
+        bool GameTime = false;
+        int WhiteT = 0;
+        int BlackT = 0;
+        int Increment = 0;
         private void Timer_Tick(object sender, EventArgs e)
         {
+            if (!GameTime) return;
             if (White2move)
-                White--;
+                WhiteT--;
             else
-                Black--;
+                BlackT--;
+            TimeShow();
+            if (Playing)
+            EndCheck(White2move ? Teams.White : Teams.Black);
+        }
+        string TimeFormat(int time)
+        {
+            if (time < 0) 
+                return "";
+            string result = "";
+
+            int h = time / 3600;
+            int m = (time % 3600) / 60;
+            int s = ((time % 3600) % 60) % 60;
+
+            result += h > 0 ? h.ToString() + " : ": "";
+            result += result.Length > 0 ? m.ToString("00") : m.ToString() + " : ";
+            result += s.ToString("00");
+            return result;
         }
         #endregion
     }
