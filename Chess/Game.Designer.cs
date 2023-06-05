@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.a8 = new System.Windows.Forms.Button();
             this.b8 = new System.Windows.Forms.Button();
             this.c8 = new System.Windows.Forms.Button();
@@ -113,6 +114,7 @@
             this.BlackTimer = new System.Windows.Forms.Label();
             this.RestartButton = new System.Windows.Forms.Button();
             this.WhiteTimer = new System.Windows.Forms.Label();
+            this.Timer = new System.Windows.Forms.Timer(this.components);
             this.Deck.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1313,6 +1315,11 @@
             this.WhiteTimer.Text = "000 : 00";
             this.WhiteTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // Timer
+            // 
+            this.Timer.Interval = 1000;
+            this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1421,5 +1428,6 @@
         private System.Windows.Forms.Label BlackTimer;
         private System.Windows.Forms.Button RestartButton;
         private System.Windows.Forms.Label WhiteTimer;
+        private System.Windows.Forms.Timer Timer;
     }
 }

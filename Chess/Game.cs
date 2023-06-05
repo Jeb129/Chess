@@ -133,17 +133,14 @@ namespace Chess
         }
         void EndCheck(Teams team)
         {
-            bool NM = NoMoves(team);
-            bool NEM = NotEnoughMaterial();
-            bool TR = ThreeRepeats();
-            if (NEM || TR || DrawCount >= 50)
+            if (NotEnoughMaterial() || ThreeRepeats() || DrawCount >= 50)
             {
                 MessageBox.Show("Ничья");
                 Playing = false;
             }
-            if (NM)
+            if (NoMoves(team))
             {
-                MessageBox.Show(Check ? "Шах и мат" : "Пат");
+                MessageBox.Show(Check ? "Шах и мат. Победа " + (White2move ? "чёрных":"белых") : "Пат");
                 Playing = false;
             }
         }
@@ -393,6 +390,17 @@ namespace Chess
             Application.Exit();
         }
         #endregion
+
+        #region Игра по времени
+        int White = 0;
+        int Black = 0;
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (White2move)
+                White--;
+            else
+                Black--;
+        }
     }
     public class Move
     {
