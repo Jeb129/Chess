@@ -36,14 +36,15 @@
             this.ChessSet.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ChessSelect
+            // ChessSet
             // 
+            this.ChessSet.BackColor = System.Drawing.Color.Black;
             this.ChessSet.Controls.Add(this.t0);
             this.ChessSet.Controls.Add(this.t3);
             this.ChessSet.Controls.Add(this.t2);
             this.ChessSet.Controls.Add(this.t1);
-            this.ChessSet.Location = new System.Drawing.Point(0, 1);
-            this.ChessSet.Name = "ChessSelect";
+            this.ChessSet.Location = new System.Drawing.Point(42, 0);
+            this.ChessSet.Name = "ChessSet";
             this.ChessSet.Size = new System.Drawing.Size(90, 300);
             this.ChessSet.TabIndex = 68;
             // 
@@ -107,10 +108,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(90, 300);
+            this.BackColor = System.Drawing.SystemColors.Window;
+            this.ClientSize = new System.Drawing.Size(166, 300);
             this.Controls.Add(this.ChessSet);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ChessSetter";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ChessSetter";
             this.ChessSet.ResumeLayout(false);
             this.ResumeLayout(false);

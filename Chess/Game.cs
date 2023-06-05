@@ -56,12 +56,13 @@ namespace Chess
         public List<DeckHistory> History = new List<DeckHistory>(); //История ходов.
         bool White2move = true; //Проверка хода белых
         bool Check = false; //Шах на доске
-        bool EndGame = false;
+        bool Playing = false;
         uint MoveCount = 0; //Счётчик ходов
         uint DrawCount = 0;
         //Информация о выбранной фигуре
         Figura SelectF; 
         List<int[]> Smoves = new List<int[]>();
+
         #region Игровой процесс
         void Moving(Figura[,] Deck,Figura select, int r, int c, bool Paint = true)
         {
@@ -156,12 +157,12 @@ namespace Chess
             if (NEM || TR || DrawCount >= 50)
             {
                 MessageBox.Show("Ничья");
-                EndGame = true;
+                Playing = true;
             }
             if (NM)
             {
                 MessageBox.Show(Check ? "Шах и мат" : "Пат");
-                EndGame = true;
+                Playing = true;
             }
         }
         #endregion
@@ -348,7 +349,7 @@ namespace Chess
         #region Обработчики
         private void Pole_Click(object sender, EventArgs e)
         {
-            if (EndGame)
+            if (Playing)
             {
                 RestartClick(sender, e);
                 return;
@@ -394,7 +395,7 @@ namespace Chess
             StartDeck();
             SelectF = null;
             White2move = true;
-            EndGame = false;
+            Playing = false;
             MoveCount = 0;
             HistoryBox.Items.Clear();
             History = new List<DeckHistory>() { new DeckHistory(null, DeckCopy(GameDeck)) };
@@ -480,7 +481,9 @@ namespace Chess
                     if (Deck[i, j] != h.Deck[i, j])
                         return false;
                     else
-                    if (Deck[i, j] != null && Deck[i, j].Type == Types.Pawn && Last != null)
+                    if (Deck[i, j] != null && 
+                        (Deck[i, j].Type == Types.Pawn || Deck[i, j].Type == Types.King) 
+                        && Last != null)
                     {
                         List<int[]> m1 = Deck[i, j].GetMoves(Deck, Last);
                         List<int[]> m2 = h.Deck[i, j].GetMoves(h.Deck, h.Last);

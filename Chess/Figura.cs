@@ -195,7 +195,7 @@ namespace Chess
             return obj is Figura figura &&
                    Type == figura.Type &&
                    Team == figura.Team &&
-                   Fmove == figura.Fmove &&
+                   (Type == Types.King ? Fmove == figura.Fmove : true) &&
                    Row == figura.Row &&
                    Col == figura.Col;
         }
