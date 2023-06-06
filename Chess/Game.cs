@@ -24,23 +24,117 @@ namespace Chess
             { a8, b8, c8, d8, e8, f8, g8, h8 }
             };
         }
-
+        #region Графика
         private readonly Button[,] ButtonDeck = new Button[8, 8]; //Визуальная доска из кнопок
-        private readonly Figura[,] GameDeck = new Figura[8, 8];//Логическая доска из фигур     
         SoundPlayer Sound = new SoundPlayer(Properties.Resources.MoveSound);
+        private void PutChess(Figura[,] Deck, Types type, Teams team, int row, int col, bool Paint = true)
+        {
+            Figura chess = new Figura(type, team, row, col);
+            if (Deck[row, col] != null && team == Deck[row, col].Team)
+                return;
+            Deck[row, col] = chess;
+            if (Paint)
+                PaintChess(row, col);
+        }
+        private void DelChess(Figura[,] Deck, int row, int col, bool Paint = true)
+        {
+            Deck[row, col] = null;
+            if (Paint)
+                PaintChess(row, col);
+        }
+        private void PaintChess(int row, int col)
+        {
+            Figura chess = GameDeck[row, col];
+            if (chess == null)
+                ButtonDeck[row, col].BackgroundImage = null;
+            else
+            {
+                if (chess.Team == Teams.White)
+                    switch (chess.Type)
+                    {
+                        case Types.King:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteKing;
+                            break;
+                        case Types.Queen:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteQueen;
+                            break;
+                        case Types.Bishop:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteBishop;
+                            break;
+                        case Types.Knight:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteKnight;
+                            break;
+                        case Types.Rook:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteRook;
+                            break;
+                        case Types.Pawn:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhitePawn;
+                            break;
+                    }
+                else
+                    switch (chess.Type)
+                    {
+                        case Types.King:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackKing;
+                            break;
+                        case Types.Queen:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackQueen;
+                            break;
+                        case Types.Bishop:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackBishop;
+                            break;
+                        case Types.Knight:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackKnight;
+                            break;
+                        case Types.Rook:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackRook;
+                            break;
+                        case Types.Pawn:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackPawn;
+                            break;
+                    }
+            }
+            ButtonDeck[row, col].Refresh();
 
-        public List<DeckHistory> History = new List<DeckHistory>(); //История ходов.
-        private bool White2move = true; //Проверка хода белых
-        private bool Check = false; //Шах на доске
-        private bool Playing = false;
-        private uint MoveCount = 0; //Счётчик ходов
-        private uint DrawCount = 0;
-
-        //Информация о выбранной фигуре
-        private Figura SelectF;
-        private List<int[]> Smoves = new List<int[]>();
-
+        }
+        private void ShowMoves()
+        {
+            ButtonDeck[SelectF.Row, SelectF.Col].BackColor = Color.Khaki;
+            foreach (int[] m in Smoves)
+                ButtonDeck[m[0], m[1]].BackColor = Color.DarkSeaGreen;
+        }
+        private void HideMoves()
+        {
+            foreach (Button a in ButtonDeck)
+                if (a.Tag.ToString() == "B")
+                    a.BackColor = Color.Peru;
+                else
+                    a.BackColor = Color.PeachPuff;
+        }
+        private void CheckShow()
+        {
+            if (!Check)
+                return;
+            int[] kpos = KingFind(GameDeck, (White2move ? Teams.White : Teams.Black));
+            ButtonDeck[kpos[0], kpos[1]].BackColor = Color.Red;
+        }
+        private void TimeShow()
+        {
+            WhiteTimer.Text = TimeFormat(WhiteT);
+            BlackTimer.Text = TimeFormat(BlackT);
+        }
+        #endregion
         #region Игровой процесс
+        private uint MoveCount = 0; //Счётчик ходов
+        private uint DrawCount = 0; //Ходы без взятий и движения пешек
+        private bool Check = false; //Шах на доске
+        private bool Playing = false; //Идёт игра
+        private bool White2move = true; //Проверка хода белых
+        private readonly Figura[,] GameDeck = new Figura[8, 8];//Логическая доска из фигур     
+        public List<DeckHistory> History = new List<DeckHistory>(); //История состояний доски.
+
+        private Figura SelectF; //Информация о выбранной фигуре
+        private List<int[]> Smoves = new List<int[]>(); //Ходы выбранной фигуры
         private void Moving(Figura[,] Deck, Figura select, int r, int c, bool Paint = true)
         {
             Types type = select.Type;
@@ -160,114 +254,57 @@ namespace Chess
             }
         }
         #endregion
-        #region Графика
-        private void PutChess(Figura[,] Deck, Types type, Teams team, int row, int col, bool Paint = true)
+        #region Игра по времени
+        private void TimerSetup()
         {
-            Figura chess = new Figura(type, team, row, col);
-            if (Deck[row, col] != null && team == Deck[row, col].Team)
-                return;
-            Deck[row, col] = chess;
-            if (Paint)
-                PaintChess(row, col);
+            TimeSetter ts = new TimeSetter();
+            ts.ShowDialog();
+            if (ts.Timer <= 0) return;
+            WhiteT = ts.Timer;
+            BlackT = WhiteT;
+            Increment = ts.Increment;
+            TimeShow();
         }
 
-        private void DelChess(Figura[,] Deck, int row, int col, bool Paint = true)
+        private void TimerAdd()
         {
-            Deck[row, col] = null;
-            if (Paint)
-                PaintChess(row, col);
-        }
-
-        /// <summary>
-        /// Отрисовка конкретного поля
-        /// </summary>
-        /// <param name="row"></param>
-        /// <param name="col"></param>
-        private void PaintChess(int row, int col)
-        {
-            Figura chess = GameDeck[row, col];
-            if (chess == null)
-                ButtonDeck[row, col].BackgroundImage = null;
+            GameTimer.Stop();
+            if (White2move)
+                WhiteT += Increment;
             else
-            {
-                if (chess.Team == Teams.White)
-                    switch (chess.Type)
-                    {
-                        case Types.King:
-                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteKing;
-                            break;
-                        case Types.Queen:
-                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteQueen;
-                            break;
-                        case Types.Bishop:
-                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteBishop;
-                            break;
-                        case Types.Knight:
-                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteKnight;
-                            break;
-                        case Types.Rook:
-                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteRook;
-                            break;
-                        case Types.Pawn:
-                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhitePawn;
-                            break;
-                    }
-                else
-                    switch (chess.Type)
-                    {
-                        case Types.King:
-                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackKing;
-                            break;
-                        case Types.Queen:
-                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackQueen;
-                            break;
-                        case Types.Bishop:
-                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackBishop;
-                            break;
-                        case Types.Knight:
-                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackKnight;
-                            break;
-                        case Types.Rook:
-                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackRook;
-                            break;
-                        case Types.Pawn:
-                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackPawn;
-                            break;
-                    }
-            }
-            ButtonDeck[row, col].Refresh();
-
+                BlackT += Increment;
+            GameTimer.Start();
         }
 
-        private void ShowMoves()
-        {
-            ButtonDeck[SelectF.Row, SelectF.Col].BackColor = Color.Khaki;
-            foreach (int[] m in Smoves)
-                ButtonDeck[m[0], m[1]].BackColor = Color.DarkSeaGreen;
-        }
-
-        private void HideMoves()
-        {
-            foreach (Button a in ButtonDeck)
-                if (a.Tag.ToString() == "B")
-                    a.BackColor = Color.Peru;
-                else
-                    a.BackColor = Color.PeachPuff;
-        }
-
-        private void CheckShow()
-        {
-            if (!Check)
-                return;
-            int[] kpos = KingFind(GameDeck, (White2move ? Teams.White : Teams.Black));
-            ButtonDeck[kpos[0], kpos[1]].BackColor = Color.Red;
-        }
-
-        private void TimeShow()
+        private bool GameTime = false;
+        private int WhiteT = 0;
+        private int BlackT = 0;
+        private int Increment = 0;
+        private void Timer_Tick(object sender, EventArgs e)
         {
             if (!GameTime) return;
-            WhiteTimer.Text = TimeFormat(WhiteT);
-            BlackTimer.Text = TimeFormat(BlackT);
+            if (White2move)
+                WhiteT--;
+            else
+                BlackT--;
+            TimeShow();
+            if (Playing)
+                EndCheck(White2move ? Teams.White : Teams.Black);
+        }
+
+        private string TimeFormat(int time)
+        {
+            if (time < 0)
+                return "";
+
+            int h = time / 3600;
+            int m = (time % 3600) / 60;
+            int s = ((time % 3600) % 60) % 60;
+
+            if (h >= 1)
+                return $"{h} : {m:00} : {s:00}";
+            else
+                return $"{m} : {s:00}";
         }
         #endregion
         #region Проверка состояния доски
@@ -322,7 +359,6 @@ namespace Chess
                 }
             return Kpos;
         }
-
         private Figura[,] DeckCopy(Figura[,] Old)
         {
             Figura[,] New = new Figura[8, 8];
@@ -331,7 +367,6 @@ namespace Chess
                     New[i, j] = Old[i, j];
             return New;
         }
-
         private void ClearDeck()
         {
             for (int i = 0; i < 8; i++)
@@ -339,7 +374,6 @@ namespace Chess
                     DelChess(GameDeck, i, j);
             HideMoves();
         }
-
         private void StartDeck()
         {
             //Ставим пешки
@@ -360,36 +394,6 @@ namespace Chess
                 PutChess(GameDeck, (Types)(3 - i), Teams.White, 0, i + 4);
                 PutChess(GameDeck, (Types)(3 - i), Teams.Black, 7, i + 4);
             }
-        }
-        #endregion
-        #region Обработчики
-        private void Pole_Click(object sender, EventArgs e)
-        {
-            if (!Playing)
-            {
-                RestartClick(sender, e);
-                return;
-            }
-            if (!(sender is Button cur)) return;
-            //получаем координаты кнопки
-            int c = cur.Name[0] - 'a';
-            int r = int.Parse(cur.Name[1].ToString()) - 1;
-            //если клик поппустому полю при отсутствии выбраной игуры
-            if (GameDeck[r, c] == null && SelectF == null)
-                return;
-            HideMoves();
-            if (SelectF != null && (GameDeck[r, c] == null || GameDeck[r, c] != null && GameDeck[r, c].Team != SelectF.Team))
-            {
-                if (!IsPossible(c, r)) return;
-
-                Moving(GameDeck, SelectF, r, c);
-                EndCheck((Teams)(White2move ? 1 : 0));
-                SelectF = null;
-            }
-            else
-                ChessSelect(r, c);
-            CheckShow();
-            TimeShow();
         }
         private bool IsPossible(int c, int r)
         {
@@ -412,11 +416,44 @@ namespace Chess
             Smoves = CheckRemove(SelectF);
             ShowMoves();
         }
+        #endregion
+        #region Обработчики
+        private void Pole_Click(object sender, EventArgs e)
+        {
+            if (!Playing)
+            {
+                RestartClick(sender, e);
+                return;
+            }
+            if (!(sender is Button cur)) return;
+            //получаем координаты кнопки
+            int c = cur.Name[0] - 'a';
+            int r = int.Parse(cur.Name[1].ToString()) - 1;
+            //если клик поппустому полю при отсутствии выбраной игуры
+            if (GameDeck[r, c] == null && SelectF == null)
+                return;
+            HideMoves();
+            if (SelectF != null && (GameDeck[r, c] == null || 
+                GameDeck[r, c] != null && GameDeck[r, c].Team != SelectF.Team))
+            {
+                if (!IsPossible(c, r)) return;
+
+                Moving(GameDeck, SelectF, r, c);
+                EndCheck((Teams)(White2move ? 1 : 0));
+                SelectF = null;
+            }
+            else
+                ChessSelect(r, c);
+            CheckShow();
+            if(GameTime)
+                TimeShow();
+        }
         private void RestartClick(object sender, EventArgs e)
         {
             SelectF = null;
             White2move = true;
             Playing = true;
+            Check = false;
             GameTime = false;
             WhiteT = 0;
             BlackT = 0;
@@ -441,60 +478,6 @@ namespace Chess
             a.ShowDialog();
         }
         #endregion
-        #region Игра по времени
-        private void TimerSetup()
-        {
-            TimeSetter ts = new TimeSetter();
-            ts.ShowDialog();
-            if (ts.Timer <= 0) return;
-            WhiteT = ts.Timer;
-            BlackT = WhiteT;
-            Increment = ts.Increment;
-            TimeShow();
-        }
-
-        private void TimerAdd()
-        {
-            GameTimer.Stop();
-            if (White2move)
-                WhiteT += Increment;
-            else
-                BlackT += Increment;
-            GameTimer.Start();
-        }
-
-        private bool GameTime = false;
-        private int WhiteT = 0;
-        private int BlackT = 0;
-        private int Increment = 0;
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            if (!GameTime) return;
-            if (White2move)
-                WhiteT--;
-            else
-                BlackT--;
-            TimeShow();
-            if (Playing)
-                EndCheck(White2move ? Teams.White : Teams.Black);
-        }
-
-        private string TimeFormat(int time)
-        {
-            if (time < 0)
-                return "";
-
-            int h = time / 3600;
-            int m = (time % 3600) / 60;
-            int s = ((time % 3600) % 60) % 60;
-
-            if (h >= 1)
-                return $"{h} : {m:00} : {s:00}";
-            else
-                return $"{m} : {s:00}";
-        }
-        #endregion
-
     }
     public class Move
     {
