@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Media;
 using System.Windows.Forms;
 using static Chess.Figura;
 
@@ -25,7 +26,8 @@ namespace Chess
         }
 
         private readonly Button[,] ButtonDeck = new Button[8, 8]; //Визуальная доска из кнопок
-        private readonly Figura[,] GameDeck = new Figura[8, 8];//Логическая доска из фигур
+        private readonly Figura[,] GameDeck = new Figura[8, 8];//Логическая доска из фигур     
+        SoundPlayer Sound = new SoundPlayer(Properties.Resources.MoveSound);
 
         public List<DeckHistory> History = new List<DeckHistory>(); //История ходов.
         private bool White2move = true; //Проверка хода белых
@@ -76,6 +78,7 @@ namespace Chess
 
             if (Paint)
             {
+                Sound.Play();
                 DrawCount = d * ++DrawCount;
                 Move move = new Move(++MoveCount, select.Team, select.Type, new int[] { select.Row, select.Col }, new int[] { r, c });
                 HistoryBox.Items.Add(move);
@@ -85,7 +88,6 @@ namespace Chess
                 Deck[r, c].Fmove = false;
             }
         }
-
         private List<int[]> CheckRemove(Figura select)
         {
             List<int[]> moves = select.GetMoves(GameDeck, History[History.Count - 1].Last);
@@ -114,7 +116,6 @@ namespace Chess
             }
             return moves;
         }
-
         private bool CheckChecker(Figura[,] Deck, Teams team, int Krow, int Kcol)
         {
             foreach (Figura Ch in Deck)
@@ -127,7 +128,6 @@ namespace Chess
                 }
             return false;
         }
-
         private void EndCheck(Teams team)
         {
             if (NotEnoughMaterial(Teams.White) && NotEnoughMaterial(Teams.Black) ||
@@ -189,51 +189,54 @@ namespace Chess
             if (chess == null)
                 ButtonDeck[row, col].BackgroundImage = null;
             else
-            if (chess.Team == Teams.White)
-                switch (chess.Type)
-                {
-                    case Types.King:
-                        ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteKing;
-                        break;
-                    case Types.Queen:
-                        ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteQueen;
-                        break;
-                    case Types.Bishop:
-                        ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteBishop;
-                        break;
-                    case Types.Knight:
-                        ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteKnight;
-                        break;
-                    case Types.Rook:
-                        ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteRook;
-                        break;
-                    case Types.Pawn:
-                        ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhitePawn;
-                        break;
-                }
-            else
-                switch (chess.Type)
-                {
-                    case Types.King:
-                        ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackKing;
-                        break;
-                    case Types.Queen:
-                        ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackQueen;
-                        break;
-                    case Types.Bishop:
-                        ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackBishop;
-                        break;
-                    case Types.Knight:
-                        ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackKnight;
-                        break;
-                    case Types.Rook:
-                        ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackRook;
-                        break;
-                    case Types.Pawn:
-                        ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackPawn;
-                        break;
-                }
+            {
+                if (chess.Team == Teams.White)
+                    switch (chess.Type)
+                    {
+                        case Types.King:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteKing;
+                            break;
+                        case Types.Queen:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteQueen;
+                            break;
+                        case Types.Bishop:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteBishop;
+                            break;
+                        case Types.Knight:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteKnight;
+                            break;
+                        case Types.Rook:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhiteRook;
+                            break;
+                        case Types.Pawn:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.WhitePawn;
+                            break;
+                    }
+                else
+                    switch (chess.Type)
+                    {
+                        case Types.King:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackKing;
+                            break;
+                        case Types.Queen:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackQueen;
+                            break;
+                        case Types.Bishop:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackBishop;
+                            break;
+                        case Types.Knight:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackKnight;
+                            break;
+                        case Types.Rook:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackRook;
+                            break;
+                        case Types.Pawn:
+                            ButtonDeck[chess.Row, chess.Col].BackgroundImage = Properties.Resources.BlackPawn;
+                            break;
+                    }
+            }
             ButtonDeck[row, col].Refresh();
+
         }
 
         private void ShowMoves()
@@ -262,6 +265,7 @@ namespace Chess
 
         private void TimeShow()
         {
+            if (!GameTime) return;
             WhiteTimer.Text = TimeFormat(WhiteT);
             BlackTimer.Text = TimeFormat(BlackT);
         }
@@ -387,7 +391,6 @@ namespace Chess
             CheckShow();
             TimeShow();
         }
-
         private bool IsPossible(int c, int r)
         {
             bool Possible = false;
@@ -396,7 +399,6 @@ namespace Chess
                     Possible = true;
             return Possible;
         }
-
         private void ChessSelect(int r, int c)
         {
             if (GameDeck[r, c] != null && GameDeck[r, c].Team == (Teams)1 != White2move)
@@ -432,6 +434,11 @@ namespace Chess
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+        private void AboutButton_Click(object sender, EventArgs e)
+        {
+            About a = new About();
+            a.ShowDialog();
         }
         #endregion
         #region Игра по времени
@@ -487,6 +494,7 @@ namespace Chess
                 return $"{m} : {s:00}";
         }
         #endregion
+
     }
     public class Move
     {

@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанных со сборкой.
-[assembly: AssemblyTitle("Chess")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Шахматы")]
+[assembly: AssemblyDescription("Курсовая работа по АИП за 1 курс")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Chess")]
-[assembly: AssemblyCopyright("Copyright ©  2023")]
+[assembly: AssemblyCompany("Костромской государственный университет")]
+[assembly: AssemblyProduct("Шахматы")]
+[assembly: AssemblyCopyright("Copyright © Балагуров И. В. 22-ИСбо-1;  2023г")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

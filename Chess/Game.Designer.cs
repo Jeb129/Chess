@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
             this.a8 = new System.Windows.Forms.Button();
             this.b8 = new System.Windows.Forms.Button();
             this.c8 = new System.Windows.Forms.Button();
@@ -111,10 +112,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.HistoryBox = new System.Windows.Forms.ListBox();
-            this.BlackTimer = new System.Windows.Forms.Label();
             this.RestartButton = new System.Windows.Forms.Button();
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
             this.WhiteTimer = new System.Windows.Forms.Label();
+            this.AboutButton = new System.Windows.Forms.Button();
+            this.BlackTimer = new System.Windows.Forms.Label();
             this.Deck.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1341,17 +1343,6 @@
             this.HistoryBox.Size = new System.Drawing.Size(199, 350);
             this.HistoryBox.TabIndex = 66;
             // 
-            // BlackTimer
-            // 
-            this.BlackTimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BlackTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BlackTimer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BlackTimer.Location = new System.Drawing.Point(673, 37);
-            this.BlackTimer.Name = "BlackTimer";
-            this.BlackTimer.Size = new System.Drawing.Size(248, 70);
-            this.BlackTimer.TabIndex = 67;
-            this.BlackTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // RestartButton
             // 
             this.RestartButton.BackColor = System.Drawing.Color.YellowGreen;
@@ -1385,6 +1376,32 @@
             this.WhiteTimer.TabIndex = 69;
             this.WhiteTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // AboutButton
+            // 
+            this.AboutButton.Cursor = System.Windows.Forms.Cursors.Help;
+            this.AboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AboutButton.Font = new System.Drawing.Font("Cooper Black", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AboutButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.AboutButton.Location = new System.Drawing.Point(0, 0);
+            this.AboutButton.Name = "AboutButton";
+            this.AboutButton.Size = new System.Drawing.Size(40, 37);
+            this.AboutButton.TabIndex = 70;
+            this.AboutButton.Text = "?";
+            this.AboutButton.UseVisualStyleBackColor = true;
+            this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
+            // 
+            // BlackTimer
+            // 
+            this.BlackTimer.BackColor = System.Drawing.Color.Transparent;
+            this.BlackTimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BlackTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BlackTimer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BlackTimer.Location = new System.Drawing.Point(673, 37);
+            this.BlackTimer.Name = "BlackTimer";
+            this.BlackTimer.Size = new System.Drawing.Size(248, 70);
+            this.BlackTimer.TabIndex = 67;
+            this.BlackTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1392,17 +1409,19 @@
             this.BackColor = System.Drawing.Color.DarkGreen;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(927, 650);
+            this.Controls.Add(this.AboutButton);
             this.Controls.Add(this.WhiteTimer);
             this.Controls.Add(this.RestartButton);
             this.Controls.Add(this.BlackTimer);
             this.Controls.Add(this.HistoryBox);
             this.Controls.Add(this.Deck);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximumSize = new System.Drawing.Size(945, 697);
             this.MinimumSize = new System.Drawing.Size(945, 697);
             this.Name = "Game";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Game";
+            this.Text = "Шахматы";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Game_FormClosing);
             this.Deck.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1497,5 +1516,6 @@
         private System.Windows.Forms.Button RestartButton;
         private System.Windows.Forms.Timer GameTimer;
         private System.Windows.Forms.Label WhiteTimer;
+        private System.Windows.Forms.Button AboutButton;
     }
 }
