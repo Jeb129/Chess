@@ -441,9 +441,14 @@ namespace Chess
             if (SelectF != null && (GameDeck[r, c] == null || 
                 GameDeck[r, c] != null && GameDeck[r, c].Team != SelectF.Team))
             {
-                if (!IsPossible(c, r)) return;
+                if (!IsPossible(c, r))
+                {
+                    SelectF= null;
+                    Smoves.Clear();
+                    return;
+                }
 
-                Moving(GameDeck, SelectF, r, c);
+                    Moving(GameDeck, SelectF, r, c);
                 EndCheck((Teams)(White2move ? 1 : 0));
                 SelectF = null;
             }
@@ -473,6 +478,11 @@ namespace Chess
             ClearDeck();
             StartDeck();
         }
+        private void soundButton_Click(object sender, EventArgs e)
+        {
+            OnOff = !OnOff;
+            soundButton.Text = OnOff ? "🔊" : "🔇";
+        }
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
@@ -483,12 +493,6 @@ namespace Chess
             a.ShowDialog();
         }
         #endregion
-
-        private void soundButton_Click(object sender, EventArgs e)
-        {
-            OnOff = !OnOff;
-            soundButton.Text = OnOff ? "🔊" : "🔇";
-        }
     }
     public class Move
     {
