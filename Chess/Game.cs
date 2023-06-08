@@ -27,21 +27,6 @@ namespace Chess
         #region Графика
         private readonly Button[,] ButtonDeck = new Button[8, 8]; //Визуальная доска из кнопок
         SoundPlayer Sound = new SoundPlayer(Properties.Resources.MoveSound);
-        private void PutChess(Figura[,] Deck, Types type, Teams team, int row, int col, bool Paint = true)
-        {
-            Figura chess = new Figura(type, team, row, col);
-            if (Deck[row, col] != null && team == Deck[row, col].Team)
-                return;
-            Deck[row, col] = chess;
-            if (Paint)
-                PaintChess(row, col);
-        }
-        private void DelChess(Figura[,] Deck, int row, int col, bool Paint = true)
-        {
-            Deck[row, col] = null;
-            if (Paint)
-                PaintChess(row, col);
-        }
         private void PaintChess(int row, int col)
         {
             Figura chess = GameDeck[row, col];
@@ -135,6 +120,21 @@ namespace Chess
 
         private Figura SelectF; //Информация о выбранной фигуре
         private List<int[]> Smoves = new List<int[]>(); //Ходы выбранной фигуры
+        private void PutChess(Figura[,] Deck, Types type, Teams team, int row, int col, bool Paint = true)
+        {
+            Figura chess = new Figura(type, team, row, col);
+            if (Deck[row, col] != null && team == Deck[row, col].Team)
+                return;
+            Deck[row, col] = chess;
+            if (Paint)
+                PaintChess(row, col);
+        }
+        private void DelChess(Figura[,] Deck, int row, int col, bool Paint = true)
+        {
+            Deck[row, col] = null;
+            if (Paint)
+                PaintChess(row, col);
+        }
         private void Moving(Figura[,] Deck, Figura select, int r, int c, bool Paint = true)
         {
             Types type = select.Type;
