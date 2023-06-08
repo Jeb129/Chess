@@ -27,6 +27,7 @@ namespace Chess
         #region Графика
         private readonly Button[,] ButtonDeck = new Button[8, 8]; //Визуальная доска из кнопок
         SoundPlayer Sound = new SoundPlayer(Properties.Resources.MoveSound);
+        bool OnOff = true;
         private void PaintChess(int row, int col)
         {
             Figura chess = GameDeck[row, col];
@@ -172,16 +173,23 @@ namespace Chess
 
             if (Paint)
             {
-                Sound.Play();
-                DrawCount = d * ++DrawCount;
-                Move move = new Move(++MoveCount, select.Team, select.Type, new int[] { select.Row, select.Col }, new int[] { r, c });
-                HistoryBox.Items.Add(move);
-                History.Add(new DeckHistory(move, DeckCopy(GameDeck)));
-                TimerAdd();
-                White2move = !White2move;
-                Deck[r, c].Fmove = false;
+                MoveEnd(Deck, select, r, c, d);
             }
         }
+
+        private void MoveEnd(Figura[,] Deck, Figura select, int r, int c, byte d)
+        {
+            if (OnOff)
+                Sound.Play();
+            DrawCount = d * ++DrawCount;
+            Move move = new Move(++MoveCount, select.Team, select.Type, new int[] { select.Row, select.Col }, new int[] { r, c });
+            HistoryBox.Items.Add(move);
+            History.Add(new DeckHistory(move, DeckCopy(GameDeck)));
+            TimerAdd();
+            White2move = !White2move;
+            Deck[r, c].Fmove = false;
+        }
+
         private List<int[]> CheckRemove(Figura select)
         {
             List<int[]> moves = select.GetMoves(GameDeck, History[History.Count - 1].Last);
@@ -478,6 +486,11 @@ namespace Chess
             a.ShowDialog();
         }
         #endregion
+
+        private void soundButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     public class Move
     {

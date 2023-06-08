@@ -117,6 +117,7 @@
             this.WhiteTimer = new System.Windows.Forms.Label();
             this.AboutButton = new System.Windows.Forms.Button();
             this.BlackTimer = new System.Windows.Forms.Label();
+            this.soundButton = new System.Windows.Forms.Button();
             this.Deck.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -1382,7 +1383,7 @@
             this.AboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AboutButton.Font = new System.Drawing.Font("Cooper Black", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AboutButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.AboutButton.Location = new System.Drawing.Point(0, 0);
+            this.AboutButton.Location = new System.Drawing.Point(884, 0);
             this.AboutButton.Name = "AboutButton";
             this.AboutButton.Size = new System.Drawing.Size(40, 37);
             this.AboutButton.TabIndex = 70;
@@ -1402,6 +1403,20 @@
             this.BlackTimer.TabIndex = 67;
             this.BlackTimer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // soundButton
+            // 
+            this.soundButton.Cursor = System.Windows.Forms.Cursors.Help;
+            this.soundButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.soundButton.Font = new System.Drawing.Font("Cooper Black", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.soundButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.soundButton.Location = new System.Drawing.Point(842, 0);
+            this.soundButton.Name = "soundButton";
+            this.soundButton.Size = new System.Drawing.Size(40, 37);
+            this.soundButton.TabIndex = 71;
+            this.soundButton.Text = "🔊";
+            this.soundButton.UseVisualStyleBackColor = true;
+            this.soundButton.Click += new System.EventHandler(this.soundButton_Click);
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1409,6 +1424,7 @@
             this.BackColor = System.Drawing.Color.DarkGreen;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(927, 650);
+            this.Controls.Add(this.soundButton);
             this.Controls.Add(this.AboutButton);
             this.Controls.Add(this.WhiteTimer);
             this.Controls.Add(this.RestartButton);
@@ -1517,5 +1533,6 @@
         private System.Windows.Forms.Timer GameTimer;
         private System.Windows.Forms.Label WhiteTimer;
         private System.Windows.Forms.Button AboutButton;
+        private System.Windows.Forms.Button soundButton;
     }
 }
