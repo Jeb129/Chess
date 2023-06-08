@@ -138,7 +138,10 @@ namespace Chess
         }
         private void Moving(Figura[,] Deck, Figura select, int r, int c, bool Paint = true)
         {
-            Types type = select.Type;
+            //считаем ходы без взятия или движения пешки
+            byte d = 1;
+            if (select.Type == Types.Pawn || Deck[r, c] != null)
+                d--;
             //Взятие на проходе
             if (select.Type == Types.Pawn && select.Col != c && Deck[r, c] == null)
                 DelChess(Deck, select.Row, c, Paint);
@@ -163,33 +166,27 @@ namespace Chess
                     DelChess(Deck, r, 0);
                 }
             }
-            //считаем ходы без взятия или движения пешки
-            byte d = 1;
-            if (type == Types.Pawn || Deck[r, c] != null)
-                d--;
 
             PutChess(Deck, select.Type, select.Team, r, c, Paint);
             DelChess(Deck, select.Row, select.Col, Paint);
 
             if (Paint)
             {
-                MoveEnd(Deck, select, r, c, d);
+                Move move = new Move(++MoveCount, select.Team, select.Type, new int[] { select.Row, select.Col }, new int[] { r, c });
+                Deck[r, c].Fmove = false;
+                MoveEnd(move, d);
             }
         }
-
-        private void MoveEnd(Figura[,] Deck, Figura select, int r, int c, byte d)
+        private void MoveEnd(Move move, byte d)
         {
             if (OnOff)
                 Sound.Play();
             DrawCount = d * ++DrawCount;
-            Move move = new Move(++MoveCount, select.Team, select.Type, new int[] { select.Row, select.Col }, new int[] { r, c });
             HistoryBox.Items.Add(move);
             History.Add(new DeckHistory(move, DeckCopy(GameDeck)));
             TimerAdd();
             White2move = !White2move;
-            Deck[r, c].Fmove = false;
         }
-
         private List<int[]> CheckRemove(Figura select)
         {
             List<int[]> moves = select.GetMoves(GameDeck, History[History.Count - 1].Last);
@@ -489,7 +486,8 @@ namespace Chess
 
         private void soundButton_Click(object sender, EventArgs e)
         {
-
+            OnOff = !OnOff;
+            soundButton.Text = OnOff ? "🔊" : "🔇";
         }
     }
     public class Move
