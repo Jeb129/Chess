@@ -229,7 +229,7 @@ namespace Chess
         }
         private void EndCheck(Teams team)
         {
-            if (NotEnoughMaterial(Teams.White) && NotEnoughMaterial(Teams.Black) ||
+            if (MaterialDraw(Teams.White) && MaterialDraw(Teams.Black) ||
                 ThreeRepeats() || DrawCount >= 50)
             {
                 GameTime = false;
@@ -243,19 +243,13 @@ namespace Chess
                 MessageBox.Show(Check ? "Шах и мат. Победа " + (White2move ? "чёрных" : "белых") : "Пат");
             }
             if (!GameTime) return;
-            if (WhiteT <= 0)
+            if (WhiteT <= 0 || BlackT <= 0)
             {
-                string win = NotEnoughMaterial(Teams.Black) ? "Ничья" : "Победа чёрных";
+                string win = MaterialDraw(White2move ? Teams.White : Teams.Black) ? "Ничья" : 
+                    "Победа " + (White2move ? "чёрных" : "белых");
                 GameTime = false;
                 Playing = false;
                 MessageBox.Show("Время белых истекло. " + win);
-            }
-            if (BlackT <= 0)
-            {
-                string win = NotEnoughMaterial(Teams.White) ? "Ничья" : "Победа Белых";
-                GameTime = false;
-                Playing = false;
-                MessageBox.Show("Время чёрных истекло. " + win);
             }
         }
         #endregion
@@ -318,13 +312,19 @@ namespace Chess
             return mC == 0;
         }
 
-        private bool NotEnoughMaterial(Teams team)
+        private bool MaterialDraw(Teams team)
         {
-            List<Figura> f = new List<Figura>();
+            List<Figura> t = new List<Figura>();
+            List<Figura> e = new List<Figura>();
             foreach (Figura Ch in GameDeck)
-                if (Ch != null && Ch.Type != Types.King && Ch.Team == team)
-                    f.Add(Ch);
-            return f.Count == 0 || f.Count == 1 && (f[0].Type == Types.Knight || f[0].Type == Types.Bishop);
+                if (Ch != null && Ch.Type != Types.King)
+                    if(Ch.Team == team)
+                        t.Add(Ch);
+                    else
+                        e.Add(Ch);
+            if(t.Count + e.Count >1)
+                return false;
+            return t.Count == 0 || t.Count == 1 && (t[0].Type == Types.Knight || t[0].Type == Types.Bishop);
         }
 
         private bool ThreeRepeats()
