@@ -27,7 +27,7 @@ namespace Chess
         #region Графика
         private readonly Button[,] ButtonDeck = new Button[8, 8]; //Визуальная доска из кнопок
         SoundPlayer Sound = new SoundPlayer(Properties.Resources.MoveSound);
-        bool OnOff = true;
+        bool SoundOnOff = true;
         private void PaintChess(int row, int col)
         {
             Figura chess = GameDeck[row, col];
@@ -179,7 +179,7 @@ namespace Chess
         }
         private void MoveEnd(Move move, byte d)
         {
-            if (OnOff)
+            if (SoundOnOff)
                 Sound.Play();
             DrawCount = d * ++DrawCount;
             HistoryBox.Items.Add(move);
@@ -480,8 +480,8 @@ namespace Chess
         }
         private void soundButton_Click(object sender, EventArgs e)
         {
-            OnOff = !OnOff;
-            soundButton.Text = OnOff ? "🔊" : "🔇";
+            SoundOnOff = !SoundOnOff;
+            soundButton.Text = SoundOnOff ? "🔊" : "🔇";
         }
         private void Game_FormClosing(object sender, FormClosingEventArgs e)
         {
