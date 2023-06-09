@@ -293,24 +293,10 @@ namespace Chess
             else
                 BlackT--;
             TimeShow();
-            if (Playing)
+            if (Playing && (WhiteT <= 0 || BlackT <= 0))
                 EndCheck(White2move ? Teams.White : Teams.Black);
         }
 
-        private string TimeFormat(int time)
-        {
-            if (time < 0)
-                return "";
-
-            int h = time / 3600;
-            int m = (time % 3600) / 60;
-            int s = ((time % 3600) % 60) % 60;
-
-            if (h >= 1)
-                return $"{h} : {m:00} : {s:00}";
-            else
-                return $"{m} : {s:00}";
-        }
         #endregion
         #region Проверка состояния доски
         private bool NoMoves(Teams team)
@@ -399,6 +385,20 @@ namespace Chess
                 PutChess(GameDeck, (Types)(3 - i), Teams.White, 0, i + 4);
                 PutChess(GameDeck, (Types)(3 - i), Teams.Black, 7, i + 4);
             }
+        }
+        private string TimeFormat(int time)
+        {
+            if (time < 0)
+                return "";
+
+            int h = time / 3600;
+            int m = (time % 3600) / 60;
+            int s = ((time % 3600) % 60) % 60;
+
+            if (h >= 1)
+                return $"{h} : {m:00} : {s:00}";
+            else
+                return $"{m} : {s:00}";
         }
         private bool IsPossible(int c, int r)
         {
