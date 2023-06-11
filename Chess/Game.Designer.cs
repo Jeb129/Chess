@@ -134,7 +134,7 @@
             this.a8.TabIndex = 0;
             this.a8.Tag = "W";
             this.a8.UseVisualStyleBackColor = false;
-            this.a8.Click += new System.EventHandler(this.Pole_Click);
+            this.a8.Click += new System.EventHandler(this.Deck_Click);
             // 
             // b8
             // 
@@ -149,7 +149,7 @@
             this.b8.TabIndex = 1;
             this.b8.Tag = "B";
             this.b8.UseVisualStyleBackColor = false;
-            this.b8.Click += new System.EventHandler(this.Pole_Click);
+            this.b8.Click += new System.EventHandler(this.Deck_Click);
             // 
             // c8
             // 
@@ -164,7 +164,7 @@
             this.c8.TabIndex = 2;
             this.c8.Tag = "W";
             this.c8.UseVisualStyleBackColor = false;
-            this.c8.Click += new System.EventHandler(this.Pole_Click);
+            this.c8.Click += new System.EventHandler(this.Deck_Click);
             // 
             // d8
             // 
@@ -179,7 +179,7 @@
             this.d8.TabIndex = 3;
             this.d8.Tag = "B";
             this.d8.UseVisualStyleBackColor = false;
-            this.d8.Click += new System.EventHandler(this.Pole_Click);
+            this.d8.Click += new System.EventHandler(this.Deck_Click);
             // 
             // h8
             // 
@@ -194,7 +194,7 @@
             this.h8.TabIndex = 7;
             this.h8.Tag = "B";
             this.h8.UseVisualStyleBackColor = false;
-            this.h8.Click += new System.EventHandler(this.Pole_Click);
+            this.h8.Click += new System.EventHandler(this.Deck_Click);
             // 
             // g8
             // 
@@ -209,7 +209,7 @@
             this.g8.TabIndex = 6;
             this.g8.Tag = "W";
             this.g8.UseVisualStyleBackColor = false;
-            this.g8.Click += new System.EventHandler(this.Pole_Click);
+            this.g8.Click += new System.EventHandler(this.Deck_Click);
             // 
             // f8
             // 
@@ -224,7 +224,7 @@
             this.f8.TabIndex = 5;
             this.f8.Tag = "B";
             this.f8.UseVisualStyleBackColor = false;
-            this.f8.Click += new System.EventHandler(this.Pole_Click);
+            this.f8.Click += new System.EventHandler(this.Deck_Click);
             // 
             // e8
             // 
@@ -239,7 +239,7 @@
             this.e8.TabIndex = 4;
             this.e8.Tag = "W";
             this.e8.UseVisualStyleBackColor = false;
-            this.e8.Click += new System.EventHandler(this.Pole_Click);
+            this.e8.Click += new System.EventHandler(this.Deck_Click);
             // 
             // h7
             // 
@@ -254,7 +254,7 @@
             this.h7.TabIndex = 15;
             this.h7.Tag = "W";
             this.h7.UseVisualStyleBackColor = false;
-            this.h7.Click += new System.EventHandler(this.Pole_Click);
+            this.h7.Click += new System.EventHandler(this.Deck_Click);
             // 
             // g7
             // 
@@ -269,7 +269,7 @@
             this.g7.TabIndex = 14;
             this.g7.Tag = "B";
             this.g7.UseVisualStyleBackColor = false;
-            this.g7.Click += new System.EventHandler(this.Pole_Click);
+            this.g7.Click += new System.EventHandler(this.Deck_Click);
             // 
             // f7
             // 
@@ -284,7 +284,7 @@
             this.f7.TabIndex = 13;
             this.f7.Tag = "W";
             this.f7.UseVisualStyleBackColor = false;
-            this.f7.Click += new System.EventHandler(this.Pole_Click);
+            this.f7.Click += new System.EventHandler(this.Deck_Click);
             // 
             // e7
             // 
@@ -299,7 +299,7 @@
             this.e7.TabIndex = 12;
             this.e7.Tag = "B";
             this.e7.UseVisualStyleBackColor = false;
-            this.e7.Click += new System.EventHandler(this.Pole_Click);
+            this.e7.Click += new System.EventHandler(this.Deck_Click);
             // 
             // d7
             // 
@@ -314,7 +314,7 @@
             this.d7.TabIndex = 11;
             this.d7.Tag = "W";
             this.d7.UseVisualStyleBackColor = false;
-            this.d7.Click += new System.EventHandler(this.Pole_Click);
+            this.d7.Click += new System.EventHandler(this.Deck_Click);
             // 
             // c7
             // 
@@ -329,7 +329,7 @@
             this.c7.TabIndex = 10;
             this.c7.Tag = "B";
             this.c7.UseVisualStyleBackColor = false;
-            this.c7.Click += new System.EventHandler(this.Pole_Click);
+            this.c7.Click += new System.EventHandler(this.Deck_Click);
             // 
             // b7
             // 
@@ -344,7 +344,7 @@
             this.b7.TabIndex = 9;
             this.b7.Tag = "W";
             this.b7.UseVisualStyleBackColor = false;
-            this.b7.Click += new System.EventHandler(this.Pole_Click);
+            this.b7.Click += new System.EventHandler(this.Deck_Click);
             // 
             // a7
             // 
@@ -359,7 +359,7 @@
             this.a7.TabIndex = 8;
             this.a7.Tag = "B";
             this.a7.UseVisualStyleBackColor = false;
-            this.a7.Click += new System.EventHandler(this.Pole_Click);
+            this.a7.Click += new System.EventHandler(this.Deck_Click);
             // 
             // h6
             // 
@@ -374,7 +374,7 @@
             this.h6.TabIndex = 23;
             this.h6.Tag = "B";
             this.h6.UseVisualStyleBackColor = false;
-            this.h6.Click += new System.EventHandler(this.Pole_Click);
+            this.h6.Click += new System.EventHandler(this.Deck_Click);
             // 
             // g6
             // 
@@ -389,7 +389,7 @@
             this.g6.TabIndex = 22;
             this.g6.Tag = "W";
             this.g6.UseVisualStyleBackColor = false;
-            this.g6.Click += new System.EventHandler(this.Pole_Click);
+            this.g6.Click += new System.EventHandler(this.Deck_Click);
             // 
             // f6
             // 
@@ -404,7 +404,7 @@
             this.f6.TabIndex = 21;
             this.f6.Tag = "B";
             this.f6.UseVisualStyleBackColor = false;
-            this.f6.Click += new System.EventHandler(this.Pole_Click);
+            this.f6.Click += new System.EventHandler(this.Deck_Click);
             // 
             // e6
             // 
@@ -419,7 +419,7 @@
             this.e6.TabIndex = 20;
             this.e6.Tag = "W";
             this.e6.UseVisualStyleBackColor = false;
-            this.e6.Click += new System.EventHandler(this.Pole_Click);
+            this.e6.Click += new System.EventHandler(this.Deck_Click);
             // 
             // d6
             // 
@@ -434,7 +434,7 @@
             this.d6.TabIndex = 19;
             this.d6.Tag = "B";
             this.d6.UseVisualStyleBackColor = false;
-            this.d6.Click += new System.EventHandler(this.Pole_Click);
+            this.d6.Click += new System.EventHandler(this.Deck_Click);
             // 
             // c6
             // 
@@ -449,7 +449,7 @@
             this.c6.TabIndex = 18;
             this.c6.Tag = "W";
             this.c6.UseVisualStyleBackColor = false;
-            this.c6.Click += new System.EventHandler(this.Pole_Click);
+            this.c6.Click += new System.EventHandler(this.Deck_Click);
             // 
             // b6
             // 
@@ -464,7 +464,7 @@
             this.b6.TabIndex = 17;
             this.b6.Tag = "B";
             this.b6.UseVisualStyleBackColor = false;
-            this.b6.Click += new System.EventHandler(this.Pole_Click);
+            this.b6.Click += new System.EventHandler(this.Deck_Click);
             // 
             // a6
             // 
@@ -479,7 +479,7 @@
             this.a6.TabIndex = 16;
             this.a6.Tag = "W";
             this.a6.UseVisualStyleBackColor = false;
-            this.a6.Click += new System.EventHandler(this.Pole_Click);
+            this.a6.Click += new System.EventHandler(this.Deck_Click);
             // 
             // h5
             // 
@@ -494,7 +494,7 @@
             this.h5.TabIndex = 31;
             this.h5.Tag = "W";
             this.h5.UseVisualStyleBackColor = false;
-            this.h5.Click += new System.EventHandler(this.Pole_Click);
+            this.h5.Click += new System.EventHandler(this.Deck_Click);
             // 
             // g5
             // 
@@ -509,7 +509,7 @@
             this.g5.TabIndex = 30;
             this.g5.Tag = "B";
             this.g5.UseVisualStyleBackColor = false;
-            this.g5.Click += new System.EventHandler(this.Pole_Click);
+            this.g5.Click += new System.EventHandler(this.Deck_Click);
             // 
             // f5
             // 
@@ -524,7 +524,7 @@
             this.f5.TabIndex = 29;
             this.f5.Tag = "W";
             this.f5.UseVisualStyleBackColor = false;
-            this.f5.Click += new System.EventHandler(this.Pole_Click);
+            this.f5.Click += new System.EventHandler(this.Deck_Click);
             // 
             // e5
             // 
@@ -539,7 +539,7 @@
             this.e5.TabIndex = 28;
             this.e5.Tag = "B";
             this.e5.UseVisualStyleBackColor = false;
-            this.e5.Click += new System.EventHandler(this.Pole_Click);
+            this.e5.Click += new System.EventHandler(this.Deck_Click);
             // 
             // d5
             // 
@@ -554,7 +554,7 @@
             this.d5.TabIndex = 27;
             this.d5.Tag = "W";
             this.d5.UseVisualStyleBackColor = false;
-            this.d5.Click += new System.EventHandler(this.Pole_Click);
+            this.d5.Click += new System.EventHandler(this.Deck_Click);
             // 
             // c5
             // 
@@ -569,7 +569,7 @@
             this.c5.TabIndex = 26;
             this.c5.Tag = "B";
             this.c5.UseVisualStyleBackColor = false;
-            this.c5.Click += new System.EventHandler(this.Pole_Click);
+            this.c5.Click += new System.EventHandler(this.Deck_Click);
             // 
             // b5
             // 
@@ -584,7 +584,7 @@
             this.b5.TabIndex = 25;
             this.b5.Tag = "W";
             this.b5.UseVisualStyleBackColor = false;
-            this.b5.Click += new System.EventHandler(this.Pole_Click);
+            this.b5.Click += new System.EventHandler(this.Deck_Click);
             // 
             // a5
             // 
@@ -599,7 +599,7 @@
             this.a5.TabIndex = 24;
             this.a5.Tag = "B";
             this.a5.UseVisualStyleBackColor = false;
-            this.a5.Click += new System.EventHandler(this.Pole_Click);
+            this.a5.Click += new System.EventHandler(this.Deck_Click);
             // 
             // h1
             // 
@@ -614,7 +614,7 @@
             this.h1.TabIndex = 63;
             this.h1.Tag = "W";
             this.h1.UseVisualStyleBackColor = false;
-            this.h1.Click += new System.EventHandler(this.Pole_Click);
+            this.h1.Click += new System.EventHandler(this.Deck_Click);
             // 
             // g1
             // 
@@ -629,7 +629,7 @@
             this.g1.TabIndex = 62;
             this.g1.Tag = "B";
             this.g1.UseVisualStyleBackColor = false;
-            this.g1.Click += new System.EventHandler(this.Pole_Click);
+            this.g1.Click += new System.EventHandler(this.Deck_Click);
             // 
             // f1
             // 
@@ -644,7 +644,7 @@
             this.f1.TabIndex = 61;
             this.f1.Tag = "W";
             this.f1.UseVisualStyleBackColor = false;
-            this.f1.Click += new System.EventHandler(this.Pole_Click);
+            this.f1.Click += new System.EventHandler(this.Deck_Click);
             // 
             // e1
             // 
@@ -659,7 +659,7 @@
             this.e1.TabIndex = 60;
             this.e1.Tag = "B";
             this.e1.UseVisualStyleBackColor = false;
-            this.e1.Click += new System.EventHandler(this.Pole_Click);
+            this.e1.Click += new System.EventHandler(this.Deck_Click);
             // 
             // d1
             // 
@@ -674,7 +674,7 @@
             this.d1.TabIndex = 59;
             this.d1.Tag = "W";
             this.d1.UseVisualStyleBackColor = false;
-            this.d1.Click += new System.EventHandler(this.Pole_Click);
+            this.d1.Click += new System.EventHandler(this.Deck_Click);
             // 
             // c1
             // 
@@ -689,7 +689,7 @@
             this.c1.TabIndex = 58;
             this.c1.Tag = "B";
             this.c1.UseVisualStyleBackColor = false;
-            this.c1.Click += new System.EventHandler(this.Pole_Click);
+            this.c1.Click += new System.EventHandler(this.Deck_Click);
             // 
             // b1
             // 
@@ -704,7 +704,7 @@
             this.b1.TabIndex = 57;
             this.b1.Tag = "W";
             this.b1.UseVisualStyleBackColor = false;
-            this.b1.Click += new System.EventHandler(this.Pole_Click);
+            this.b1.Click += new System.EventHandler(this.Deck_Click);
             // 
             // a1
             // 
@@ -719,7 +719,7 @@
             this.a1.TabIndex = 56;
             this.a1.Tag = "B";
             this.a1.UseVisualStyleBackColor = false;
-            this.a1.Click += new System.EventHandler(this.Pole_Click);
+            this.a1.Click += new System.EventHandler(this.Deck_Click);
             // 
             // h2
             // 
@@ -734,7 +734,7 @@
             this.h2.TabIndex = 55;
             this.h2.Tag = "B";
             this.h2.UseVisualStyleBackColor = false;
-            this.h2.Click += new System.EventHandler(this.Pole_Click);
+            this.h2.Click += new System.EventHandler(this.Deck_Click);
             // 
             // g2
             // 
@@ -749,7 +749,7 @@
             this.g2.TabIndex = 54;
             this.g2.Tag = "W";
             this.g2.UseVisualStyleBackColor = false;
-            this.g2.Click += new System.EventHandler(this.Pole_Click);
+            this.g2.Click += new System.EventHandler(this.Deck_Click);
             // 
             // f2
             // 
@@ -764,7 +764,7 @@
             this.f2.TabIndex = 53;
             this.f2.Tag = "B";
             this.f2.UseVisualStyleBackColor = false;
-            this.f2.Click += new System.EventHandler(this.Pole_Click);
+            this.f2.Click += new System.EventHandler(this.Deck_Click);
             // 
             // e2
             // 
@@ -779,7 +779,7 @@
             this.e2.TabIndex = 52;
             this.e2.Tag = "W";
             this.e2.UseVisualStyleBackColor = false;
-            this.e2.Click += new System.EventHandler(this.Pole_Click);
+            this.e2.Click += new System.EventHandler(this.Deck_Click);
             // 
             // d2
             // 
@@ -794,7 +794,7 @@
             this.d2.TabIndex = 51;
             this.d2.Tag = "B";
             this.d2.UseVisualStyleBackColor = false;
-            this.d2.Click += new System.EventHandler(this.Pole_Click);
+            this.d2.Click += new System.EventHandler(this.Deck_Click);
             // 
             // c2
             // 
@@ -809,7 +809,7 @@
             this.c2.TabIndex = 50;
             this.c2.Tag = "W";
             this.c2.UseVisualStyleBackColor = false;
-            this.c2.Click += new System.EventHandler(this.Pole_Click);
+            this.c2.Click += new System.EventHandler(this.Deck_Click);
             // 
             // b2
             // 
@@ -824,7 +824,7 @@
             this.b2.TabIndex = 49;
             this.b2.Tag = "B";
             this.b2.UseVisualStyleBackColor = false;
-            this.b2.Click += new System.EventHandler(this.Pole_Click);
+            this.b2.Click += new System.EventHandler(this.Deck_Click);
             // 
             // a2
             // 
@@ -839,7 +839,7 @@
             this.a2.TabIndex = 48;
             this.a2.Tag = "W";
             this.a2.UseVisualStyleBackColor = false;
-            this.a2.Click += new System.EventHandler(this.Pole_Click);
+            this.a2.Click += new System.EventHandler(this.Deck_Click);
             // 
             // h3
             // 
@@ -854,7 +854,7 @@
             this.h3.TabIndex = 47;
             this.h3.Tag = "W";
             this.h3.UseVisualStyleBackColor = false;
-            this.h3.Click += new System.EventHandler(this.Pole_Click);
+            this.h3.Click += new System.EventHandler(this.Deck_Click);
             // 
             // g3
             // 
@@ -869,7 +869,7 @@
             this.g3.TabIndex = 46;
             this.g3.Tag = "B";
             this.g3.UseVisualStyleBackColor = false;
-            this.g3.Click += new System.EventHandler(this.Pole_Click);
+            this.g3.Click += new System.EventHandler(this.Deck_Click);
             // 
             // f3
             // 
@@ -884,7 +884,7 @@
             this.f3.TabIndex = 45;
             this.f3.Tag = "W";
             this.f3.UseVisualStyleBackColor = false;
-            this.f3.Click += new System.EventHandler(this.Pole_Click);
+            this.f3.Click += new System.EventHandler(this.Deck_Click);
             // 
             // e3
             // 
@@ -899,7 +899,7 @@
             this.e3.TabIndex = 44;
             this.e3.Tag = "B";
             this.e3.UseVisualStyleBackColor = false;
-            this.e3.Click += new System.EventHandler(this.Pole_Click);
+            this.e3.Click += new System.EventHandler(this.Deck_Click);
             // 
             // d3
             // 
@@ -914,7 +914,7 @@
             this.d3.TabIndex = 43;
             this.d3.Tag = "W";
             this.d3.UseVisualStyleBackColor = false;
-            this.d3.Click += new System.EventHandler(this.Pole_Click);
+            this.d3.Click += new System.EventHandler(this.Deck_Click);
             // 
             // c3
             // 
@@ -929,7 +929,7 @@
             this.c3.TabIndex = 42;
             this.c3.Tag = "B";
             this.c3.UseVisualStyleBackColor = false;
-            this.c3.Click += new System.EventHandler(this.Pole_Click);
+            this.c3.Click += new System.EventHandler(this.Deck_Click);
             // 
             // b3
             // 
@@ -944,7 +944,7 @@
             this.b3.TabIndex = 41;
             this.b3.Tag = "W";
             this.b3.UseVisualStyleBackColor = false;
-            this.b3.Click += new System.EventHandler(this.Pole_Click);
+            this.b3.Click += new System.EventHandler(this.Deck_Click);
             // 
             // a3
             // 
@@ -959,7 +959,7 @@
             this.a3.TabIndex = 40;
             this.a3.Tag = "B";
             this.a3.UseVisualStyleBackColor = false;
-            this.a3.Click += new System.EventHandler(this.Pole_Click);
+            this.a3.Click += new System.EventHandler(this.Deck_Click);
             // 
             // h4
             // 
@@ -974,7 +974,7 @@
             this.h4.TabIndex = 39;
             this.h4.Tag = "B";
             this.h4.UseVisualStyleBackColor = false;
-            this.h4.Click += new System.EventHandler(this.Pole_Click);
+            this.h4.Click += new System.EventHandler(this.Deck_Click);
             // 
             // g4
             // 
@@ -989,7 +989,7 @@
             this.g4.TabIndex = 38;
             this.g4.Tag = "W";
             this.g4.UseVisualStyleBackColor = false;
-            this.g4.Click += new System.EventHandler(this.Pole_Click);
+            this.g4.Click += new System.EventHandler(this.Deck_Click);
             // 
             // f4
             // 
@@ -1004,7 +1004,7 @@
             this.f4.TabIndex = 37;
             this.f4.Tag = "B";
             this.f4.UseVisualStyleBackColor = false;
-            this.f4.Click += new System.EventHandler(this.Pole_Click);
+            this.f4.Click += new System.EventHandler(this.Deck_Click);
             // 
             // e4
             // 
@@ -1019,7 +1019,7 @@
             this.e4.TabIndex = 36;
             this.e4.Tag = "W";
             this.e4.UseVisualStyleBackColor = false;
-            this.e4.Click += new System.EventHandler(this.Pole_Click);
+            this.e4.Click += new System.EventHandler(this.Deck_Click);
             // 
             // d4
             // 
@@ -1034,7 +1034,7 @@
             this.d4.TabIndex = 35;
             this.d4.Tag = "B";
             this.d4.UseVisualStyleBackColor = false;
-            this.d4.Click += new System.EventHandler(this.Pole_Click);
+            this.d4.Click += new System.EventHandler(this.Deck_Click);
             // 
             // c4
             // 
@@ -1049,7 +1049,7 @@
             this.c4.TabIndex = 34;
             this.c4.Tag = "W";
             this.c4.UseVisualStyleBackColor = false;
-            this.c4.Click += new System.EventHandler(this.Pole_Click);
+            this.c4.Click += new System.EventHandler(this.Deck_Click);
             // 
             // b4
             // 
@@ -1064,7 +1064,7 @@
             this.b4.TabIndex = 33;
             this.b4.Tag = "B";
             this.b4.UseVisualStyleBackColor = false;
-            this.b4.Click += new System.EventHandler(this.Pole_Click);
+            this.b4.Click += new System.EventHandler(this.Deck_Click);
             // 
             // a4
             // 
@@ -1079,7 +1079,7 @@
             this.a4.TabIndex = 32;
             this.a4.Tag = "W";
             this.a4.UseVisualStyleBackColor = false;
-            this.a4.Click += new System.EventHandler(this.Pole_Click);
+            this.a4.Click += new System.EventHandler(this.Deck_Click);
             // 
             // Deck
             // 
