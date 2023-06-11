@@ -28,6 +28,11 @@ namespace Chess
         private readonly Button[,] ButtonDeck = new Button[8, 8]; //Визуальная доска из кнопок
         SoundPlayer Sound = new SoundPlayer(Properties.Resources.MoveSound);
         bool SoundOnOff = true;
+        /// <summary>
+        /// Отрисовка полей на доске
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
         private void PaintChess(int row, int col)
         {
             Figura chess = GameDeck[row, col];
@@ -83,12 +88,18 @@ namespace Chess
             ButtonDeck[row, col].Refresh();
 
         }
+        /// <summary>
+        /// подсвечивает выбранную фигуру и её возможные ходы
+        /// </summary>
         private void ShowMoves()
         {
             ButtonDeck[SelectF.Row, SelectF.Col].BackColor = Color.Khaki;
             foreach (int[] m in Smoves)
                 ButtonDeck[m[0], m[1]].BackColor = Color.DarkSeaGreen;
         }
+        /// <summary>
+        /// Убирает подсветку ходов
+        /// </summary>
         private void HideMoves()
         {
             foreach (Button a in ButtonDeck)
@@ -97,6 +108,9 @@ namespace Chess
                 else
                     a.BackColor = Color.PeachPuff;
         }
+        /// <summary>
+        /// Подсвечивает короля, которому объявлен шах
+        /// </summary>
         private void CheckShow()
         {
             if (!Check)
@@ -104,6 +118,9 @@ namespace Chess
             int[] kpos = KingFind(GameDeck, (White2move ? Teams.White : Teams.Black));
             ButtonDeck[kpos[0], kpos[1]].BackColor = Color.Red;
         }
+        /// <summary>
+        /// Отображает таймеры
+        /// </summary>
         private void TimeShow()
         {
             WhiteTimer.Text = TimeFormat(WhiteT);
@@ -271,17 +288,26 @@ namespace Chess
         }
         #endregion
         #region Игра по времени
+        private bool GameTime = false; //Включен ли таймер в партии
+        private int WhiteT = 0; //Таймер белых
+        private int BlackT = 0;//Таймер чёрных
+        private int Increment = 0;//Прибавка после хода
+        /// <summary>
+        /// Установка таймера
+        /// </summary>
         private void TimerSetup()
         {
             TimeSetter ts = new TimeSetter();
             ts.ShowDialog();
-            //if (ts.Timer <= 0) return;
-            WhiteT = 5;
+            if (ts.Timer <= 0) return;
+            WhiteT = ts.Timer;
             BlackT = WhiteT;
             Increment = ts.Increment;
             TimeShow();
         }
-
+        /// <summary>
+        /// Добавление времени после хода
+        /// </summary>
         private void TimerAdd()
         {
             GameTimer.Stop();
@@ -291,11 +317,6 @@ namespace Chess
                 BlackT += Increment;
             GameTimer.Start();
         }
-
-        private bool GameTime = false;
-        private int WhiteT = 0;
-        private int BlackT = 0;
-        private int Increment = 0;
         private void Timer_Tick(object sender, EventArgs e)
         {
             if (!GameTime) return;
@@ -516,6 +537,11 @@ namespace Chess
         }
         #endregion
         #region Обработчики
+        /// <summary>
+        /// клик по полю
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Deck_Click(object sender, EventArgs e)
         {
             if (!Playing)
@@ -551,6 +577,11 @@ namespace Chess
             if(GameTime)
                 TimeShow();
         }
+        /// <summary>
+        /// Рестарт
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RestartClick(object sender, EventArgs e)
         {
             SelectF = null;
@@ -569,9 +600,14 @@ namespace Chess
 
             TimerSetup();
             ClearDeck();
-            TestDeck();
+            StartDeck();
             //StartDeck();
         }
+        /// <summary>
+        /// Переключение звука
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void soundButton_Click(object sender, EventArgs e)
         {
             SoundOnOff = !SoundOnOff;
